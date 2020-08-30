@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{788FC1A9-CC4F-46AC-8186-3511B183F480}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>SSMSDatabaseFolders</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <Name>Ablesepruefung.Setup_x86</Name>
+    <EnableProjectHarvesting>True</EnableProjectHarvesting>
+    <SccProjectName>Svn</SccProjectName>
+    <SccProvider>SubversionScc</SccProvider>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WixToolPath>$(SolutionDir)\3rdParty\WiX\</WixToolPath>
+    <WixTargetsPath>$(WixToolPath)Wix.targets</WixTargetsPath>
+    <WixTasksPath>$(WixToolPath)wixtasks.dll</WixTasksPath>
+    <WixCATargetsPath>$(WixToolPath)\sdk\Wix.CA.targets</WixCATargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\Build\Setup\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <Cultures>
+    </Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\Build\Setup\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>
+    </Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug;</DefineConstants>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <Cultures>de-DE</Cultures>
+    <OutputPath>..\..\Build\Setup\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <WixVariables>
+    </WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>de-DE</Cultures>
+    <OutputPath>..\..\Build\Setup\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Config\Common.wxs" />
+    <Compile Include="Config\Prerequisits.wxs" />
+    <Compile Include="Config\RegistryKeys.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Localization" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Common.Config.wxi" />
+    <Content Include="Config\Config.wxi" />
+    <Content Include="Directories.wxi" />
+    <Content Include="Resources\setup_banner.bmp" />
+    <Content Include="Resources\setup_dialog.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixCsFileVersionExtension">
+      <HintPath>..\..\3rdParty\Wix\WixCsFileVersionExtension.dll</HintPath>
+      <Name>WixCsFileVersionExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>..\..\3rdParty\Wix\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>..\..\3rdParty\Wix\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>..\..\3rdParty\Wix\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>..\..\3rdParty\Wix\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Adapters\Ssms18.csproj">
+      <Name>Ssms18</Name>
+      <Project>{9a2f9b7c-9878-450b-bcce-c96afa11f2b1}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms2012.csproj">
+      <Name>Ssms2012</Name>
+      <Project>{35aa603a-43f7-4473-bb50-083b46ea19d2}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms2014.csproj">
+      <Name>Ssms2014</Name>
+      <Project>{b4ccf6f0-6279-4aef-864f-4fbe1c83747d}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms2016.csproj">
+      <Name>Ssms2016</Name>
+      <Project>{e0acb744-d2a1-42e0-9f17-f09a8658587c}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms2017.csproj">
+      <Name>Ssms2017</Name>
+      <Project>{e4ae0681-7846-403c-bdbd-bf7238bdc0d4}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Name>Interfaces</Name>
+      <Project>{c12637b4-df88-4e68-8b6a-0012db5b10dc}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\VSPackage\VSPackage.csproj">
+      <Name>VSPackage</Name>
+      <Project>{8bb71ce1-81b0-476a-831c-933df457b94e}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Localization.de-de.wxl" />
+    <EmbeddedResource Include="Localization\Localization.en-us.wxl" />
+    <EmbeddedResource Include="Localization\WixUI_de-de.wxl" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <PropertyGroup>
+    <PostBuildEvent>IF EXIST "!(TargetPath)" move "!(TargetPath)" .
+IF EXIST "!(TargetPath)" move "!(TargetPdbPath)" .</PostBuildEvent>
+  </PropertyGroup>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

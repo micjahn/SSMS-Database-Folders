@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <?include $(sys.CURRENTDIR)Directories.wxi?>
+   <?include $(var.ConfigDir)Config.wxi?>
+
+   <Fragment>
+      <Property Id="Common" Value="{D8C8C9B7-3E48-4AF6-BDC6-97D6FE169ED8}" />
+
+      <CustomActionRef Id="WixExitEarlyWithSuccess" />
+
+     <!-- Icon Id="icon.ico" SourceFile="$(var.SetupIcon)"/ -->
+      <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+      <Property Id="ARPHELPLINK" Value="https://github.com/micjahn/SSMS-Database-Folders" />
+   </Fragment>
+</Wix>

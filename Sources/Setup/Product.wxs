@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?include $(sys.CURRENTDIR)Directories.wxi?>
+<?include $(var.ConfigDir)Common.Config.wxi?>
+<?include $(var.ConfigDir)Config.wxi?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="$(var.ProductCode)"
+	         Name="$(var.ProductName)"
+	         Language="$(var.ProductLanguage)"
+	         Codepage="$(var.ProductCodepage)"
+	         Version="!(bind.fileVersion.File.VSPackage)"
+	         Manufacturer="$(var.ProductManufacturer)"
+	         UpgradeCode="$(var.UpgradeCode)">
+
+    <Package InstallerVersion="$(var.InstallerVersion)"
+		         Manufacturer="$(var.ProductManufacturer)"
+		         InstallPrivileges="elevated"
+		         InstallScope="perMachine"
+		         Platform="$(var.Platform)"
+		         Compressed="yes" />
+
+    <PropertyRef Id="Common" />
+    <PropertyRef Id="Prerequisits" />
+    <PropertyRef Id="SSMS18INSTALLROOT" />
+
+    <Media Id="1" Cabinet="media.cab" EmbedCab="yes" CompressionLevel="high" />
+    
+    <MajorUpgrade AllowDowngrades="no"
+		              AllowSameVersionUpgrades="no"
+		              DowngradeErrorMessage="!(loc.DowngradeErrorMessage)"
+		              MigrateFeatures="yes" Disallow="yes"
+		              DisallowUpgradeErrorMessage="!(loc.DisallowUpgradeErrorMessage)" />
+
+    <Property Id="INSTALLLEVEL" Value="3" />
+
+    <!-- directories -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLLOCATION" Name="$(var.InstallName)">
+          <Directory Id="INSTALLLOCATIONDE" Name="de" />
+        </Directory>
+      </Directory>
+      <Directory Id="SSMS18INSTALLROOT" Name="[SSMS18INSTALLROOT]">
+        <Directory Id="SSMS18.Common7" Name="Common7">
+          <Directory Id="SSMS18.IDE" Name="IDE">
+            <Directory Id="SSMS18.Extensions" Name="Extensions">
+              <Directory Id="SSMS18.Extensions.DF" Name="SsmsDatabaseFolders">
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!-- files -->
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="Files.Ssms2012" Guid="{493DB71C-0543-4467-B502-8229A2A9BA16}">
+        <File Id="File.Ssms2012" Source="$(var.Ssms2012.TargetPath)" />
+      </Component>
+      <Component Id="Files.Ssms2014" Guid="{265A8A47-8141-4C4C-A26B-E365DB4F6EE6}">
+        <File Id="File.Ssms2014" Source="$(var.Ssms2014.TargetPath)" />
+      </Component>
+      <Component Id="Files.Ssms2016" Guid="{A4F0FE0D-DEF3-40BE-A5FE-C3B0FA8BB791}">
+        <File Id="File.Ssms2016" Source="$(var.Ssms2016.TargetPath)" />
+      </Component>
+      <Component Id="Files.Ssms2017" Guid="{CC6E1812-D966-46D0-906E-81924C2C6613}">
+        <File Id="File.Ssms2017" Source="$(var.Ssms2017.TargetPath)" />
+      </Component>
+      <Component Id="Files.Ssms18" Guid="{4F5EEC5F-62BC-4713-AC02-4906725FDCC9}">
+        <File Id="File.Ssms18" Source="$(var.Ssms18.TargetPath)" />
+      </Component>
+      <Component Id="Files.Interfaces" Guid="{E0018001-55B3-46E9-9ADB-6E8306A1E132}">
+        <File Id="File.Interfaces" Source="$(var.Interfaces.TargetPath)" />
+      </Component>
+      <Component Id="Files.VSPackage" Guid="{9ECCC463-34EB-4A0D-96AA-958B074BD8C0}">
+        <File Id="File.VSPackage" Source="$(var.VSPackage.TargetPath)" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLLOCATIONDE">
+      <Component Id="Files.VSPackage.de" Guid="{1E98206E-76B7-4D3B-9E2A-738859EEE7AB}">
+        <File Id="File.VSPackage.de" Source="$(var.VSPackage.TargetDir)de\$(var.VSPackage.TargetName).resources.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="SSMS18.Extensions.DF">
+      <Component Id="Files.Ssms18.Package" Guid="{F3429F83-6AC2-47BD-83CC-B4C59B321885}">
+        <File Id="File.Ssms18.pkgdef" Source="$(var.VSPackage.TargetDir)\SsmsDatabaseFolders.VSPackage.pkgdef" />
+        <File Id="File.Ssms18.vsixmanifest" Source="$(var.VSPackage.TargetDir)\extension.vsixmanifest" />
+        <IniFile Id="Ini1"
+                 Action="addLine"
+                 Directory="SSMS18.Extensions.DF"
+                 Section="$RootKey$\Packages\{2d162307-505c-4f59-9e87-e7e579c4bf9d}"
+                 Name="SsmsDatabaseFolders.VSPackage.pkgdef"
+                 Key="&quot;CodeBase&quot;"
+                 Value="&quot;[INSTALLLOCATION]$(var.VSPackage.TargetFileName)&quot;" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- features -->
+    <Feature Id="CompleteInstall" Title="$(var.ProductName)" Level="1" InstallDefault="local" AllowAdvertise="no">
+      <Feature Id="Ssms18Features" Title="Microsoft SQL Management Studio 18" Level="1"
+			         Description="!(loc.DescriptionFeatureSsms18)"
+			         InstallDefault="local" AllowAdvertise="no" TypicalDefault="install">
+
+        <ComponentRef Id="Files.Ssms2012" />
+        <ComponentRef Id="Files.Ssms2014" />
+        <ComponentRef Id="Files.Ssms2016" />
+        <ComponentRef Id="Files.Ssms2017" />
+        <ComponentRef Id="Files.Ssms18" />
+        <ComponentRef Id="Files.Interfaces" />
+        <ComponentRef Id="Files.VSPackage" />
+        <ComponentRef Id="Files.VSPackage.de" />
+        <ComponentRef Id="Files.Ssms18.Package" />
+      </Feature>
+
+    </Feature>
+
+    <!-- ui variables -->
+    <WixVariable Id="WixUIBannerBmp" Value="Resources\setup_banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Resources\setup_dialog.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="..\..\LICENSE.rtf" />
+
+    <UI Id="UIElements">
+      <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+
+      <UIRef Id="WixUI_Minimal" />
+      <UIRef Id="WixUI_ErrorProgressText" />
+    </UI>
+  </Product>
+</Wix>

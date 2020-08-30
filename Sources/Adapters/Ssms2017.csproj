@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\..\Resources\Icons\TreeView_16x.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Include\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
@@ -63,6 +66,11 @@
       <Project>{c12637b4-df88-4e68-8b6a-0012db5b10dc}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Resources\Icons\TreeView_16x.ico">
+      <Link>Properties\TreeView_16x.ico</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

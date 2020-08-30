@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\..\Resources\Icons\TreeView_16x.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +55,11 @@
     <None Include="..\..\Keys\Key.snk">
       <Link>Properties\Key.snk</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Resources\Icons\TreeView_16x.ico">
+      <Link>Properties\TreeView_16x.ico</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

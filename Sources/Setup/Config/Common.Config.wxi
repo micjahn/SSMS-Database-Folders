@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+   <!-- Minimum version supported if product already installed and this is an upgrade -->
+   <!-- Note that 4th version (Revision) is ignored by Windows Installer -->
+   <?define MinimumUpgradeVersion = "0.0.0.0" ?>
+
+   <!-- Platform specific variables -->
+   <?if $(var.Platform) = x64 ?>
+   <?define Win64 = "yes" ?>
+   <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+   <?else ?>
+   <?define Win64 = "no" ?>
+   <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+   <?endif ?>
+
+   <?define ProductManufacturer = "Michael Jahn"?>
+
+   <?define ProductManufacturerInstallRoot = ""?>
+   <?define ProductManufacturerInstallNameKey = ""?>
+   <?define ProductManufacturerWebInstallRoot = ""?>
+
+   <!-- 
+   Decimal Language ID (LCID) for the Product. Used for localization.
+   http://msdn.microsoft.com/en-us/goglobal/bb964664
+   http://msdn.microsoft.com/en-us/library/0h88fahh(v=vs.85).aspx
+   -->
+   <?define ProductLanguage = "1033" ?>
+   <?define ProductCodepage = "1252" ?>
+
+   <!--
+   The minimum version of the Windows Installer required to install the package.
+   Take the major version of the required Windows Installer and multiply by a 100
+   then add the minor version of the Windows Installer. 
+   
+   Version information about Windows Installer can be found here:
+   http://msdn.microsoft.com/en-us/library/aa371185(VS.85).aspx
+   
+   For 64-bit Windows Installer packages, this property has to be set at minumum to 200 
+   as Windows Installer 2.0 was the first version to support 64-bit packages.
+   -->
+   <?define InstallerVersion = "310"?>
+</Include>
