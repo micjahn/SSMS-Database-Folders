@@ -84,8 +84,8 @@
 
     <DirectoryRef Id="SSMS18.Extensions.DF">
       <Component Id="Files.Ssms18.Package" Guid="{F3429F83-6AC2-47BD-83CC-B4C59B321885}">
-        <File Id="File.Ssms18.pkgdef" Source="$(var.VSPackage.TargetDir)\SsmsDatabaseFolders.VSPackage.pkgdef" />
-        <File Id="File.Ssms18.vsixmanifest" Source="$(var.VSPackage.TargetDir)\extension.vsixmanifest" />
+        <File Id="File.Ssms18.pkgdef" Source="$(var.VSPackage.TargetDir)SsmsDatabaseFolders.VSPackage.pkgdef" />
+        <File Id="File.Ssms18.vsixmanifest" Source="$(var.VSPackage.TargetDir)extension.vsixmanifest" />
         <IniFile Id="Ini1"
                  Action="addLine"
                  Directory="SSMS18.Extensions.DF"

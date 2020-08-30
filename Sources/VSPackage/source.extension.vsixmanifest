@@ -4,8 +4,10 @@
         <Identity Id="SsmsDatabaseFolders.Michael Jahn.CEB7602F-8130-4A69-BCA3-8DA1C17B4B7D" Version="1.0" Language="en-US" Publisher="Michael Jahn" />
         <DisplayName>SsmsDatabaseFolders</DisplayName>
         <Description xml:space="preserve">SSMS Database Group Folders</Description>
+        <License>LICENSE.rtf</License>
+        <Icon>Resources\SsmsDatabaseFoldersPackage.ico</Icon>
     </Metadata>
-    <Installation>
+    <Installation AllUsers="true">
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,19.0]" />
     </Installation>
     <Dependencies>
