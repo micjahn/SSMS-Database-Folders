@@ -1,7 +1,9 @@
 ﻿namespace SsmsDatabaseFolders
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
     using Microsoft.SqlServer.Management.UI.VSIntegration.ObjectExplorer;
@@ -108,9 +110,7 @@
                 if (indexForInsertNextDatabaseFolder < 0)
                     indexForInsertGlobalReadonlyDatabaseFolder = indexForInsertNextDatabaseFolder = nodeIndex;
 
-                var databaseFolder = GetDatabaseFolderNameFromNode(childNode, childNodeInformation);
-
-                var databaseFolderNode = GetOrCreateFolderNode(node, databaseFolder, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder, ref indexForInsertNextDatabaseFolder);
+                var databaseFolderNode = GetOrCreateFolderNode(node, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder, ref indexForInsertNextDatabaseFolder);
                 if (databaseFolderNode == null)
                     continue;
 
@@ -137,38 +137,68 @@
             return node.Tag != null && node.Tag.ToString() == DatabaseFolderNodeTag;
         }
 
-        private String GetDatabaseFolderNameFromNode(TreeNode node, INodeInformation nodeInformation)
+        private IEnumerable<String> GetDatabaseFolderNameFromNode(TreeNode node, INodeInformation nodeInformation)
         {
             var ni = nodeInformation ?? GetNodeInformation(node);
             if (ni != null)
             {
-                var indexOfUnderscore = ni.InvariantName.IndexOf('_');
-                if (indexOfUnderscore > 0)
-                    return ni.InvariantName.Substring(0, indexOfUnderscore);
+                if (Options.RegularExpressions.Count > 0)
+                {
+                    foreach (var pattern in Options.RegularExpressions)
+                    {
+                        if (String.IsNullOrEmpty(pattern))
+                            continue;
+
+                        var match = Regex.Match(ni.InvariantName, pattern, RegexOptions.IgnoreCase);
+                        if (match.Groups.Count > 1)
+                        {
+                            for (var groupIndex = 1; groupIndex < match.Groups.Count; groupIndex++)
+                            {
+                                var group = match.Groups[groupIndex];
+                                if (!string.IsNullOrEmpty(group.Value))
+                                    yield return group.Value;
+                            }
+                            yield break;
+                        }
+                    }
+                }
+                else
+                {
+                    var indexOfUnderscore = ni.InvariantName.IndexOf('_');
+                    if (indexOfUnderscore > 0)
+                        yield return ni.InvariantName.Substring(0, indexOfUnderscore);
+                }
             }
-            return null;
         }
 
-        private TreeNode GetOrCreateFolderNode(TreeNode rootNode, string databaseFolder, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder, ref int indexForInsertNextDatabaseFolder)
+        private TreeNode GetOrCreateFolderNode(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder, ref int indexForInsertNextDatabaseFolder)
         {
             TreeNode databaseFolderNode = null;
 
-            if (Options.GroupDatabasesByName && !String.IsNullOrEmpty(databaseFolder))
+            if (Options.GroupDatabasesByName)
             {
-                if (rootNode.Nodes.ContainsKey(databaseFolder))
-                    databaseFolderNode = rootNode.Nodes[databaseFolder];
-                else
+                var currentNode = rootNode;
+                var newIndex = indexForInsertNextDatabaseFolder;
+                foreach (var databaseFolder in GetDatabaseFolderNameFromNode(childNode, childNodeInformation))
                 {
-                    databaseFolderNode = new DatabaseFolderTreeNode(rootNode)
+                    if (currentNode.Nodes.ContainsKey(databaseFolder))
+                        databaseFolderNode = currentNode.Nodes[databaseFolder];
+                    else
                     {
-                        Name = databaseFolder,
-                        Text = databaseFolder,
-                        Tag = DatabaseFolderNodeTag,
-                        ImageIndex = rootNode.ImageIndex,
-                        SelectedImageIndex = rootNode.ImageIndex
-                    };
-                    rootNode.Nodes.Insert(indexForInsertNextDatabaseFolder, databaseFolderNode);
-                    indexForInsertNextDatabaseFolder++;
+                        databaseFolderNode = new DatabaseFolderTreeNode(currentNode)
+                        {
+                            Name = databaseFolder,
+                            Text = databaseFolder,
+                            Tag = DatabaseFolderNodeTag,
+                            ImageIndex = currentNode.ImageIndex,
+                            SelectedImageIndex = currentNode.ImageIndex
+                        };
+                        currentNode.Nodes.Insert(newIndex, databaseFolderNode);
+                        if (currentNode == rootNode)
+                            indexForInsertNextDatabaseFolder++;
+                        newIndex = 0;
+                    }
+                    currentNode = databaseFolderNode;
                 }
             }
 

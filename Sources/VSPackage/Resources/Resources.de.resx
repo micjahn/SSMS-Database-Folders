@@ -126,11 +126,17 @@
   <data name="PropertyDescriptionDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Aktiviert das Gruppieren von Datenbanken in Ordner mit dem Namen aus dem Bestandteil vor dem ersten Unterstrich</value>
   </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsRegularExpressions" xml:space="preserve">
+    <value>Angabe einer Liste von regulären Ausdrücken, welche genutzt werden, um aus dem Namen der Datenbank eine Ordnerstruktur aufzubauen (bspw. "^(AppFabric)" gruppiert alle Datenbanken im Ordner AppFabric, wenn der Datenbankname mit dieser Zeichenfolge beginnt).</value>
+  </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Aktiviert das Erzeugen von separaten Ordner für schreibgeschützte Datenbanken</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Datenbanken in Ordnern gruppieren</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsRegularExpressions" xml:space="preserve">
+    <value>Ordnernamen durch reguläre Ausdrücke ermitteln</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Separate Ordner für schreibgeschützte Datenbanken</value>

@@ -126,11 +126,17 @@
   <data name="PropertyDescriptionDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Activates grouping of databases in folders by using that part of the database names before the first underscore</value>
   </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsRegularExpressions" xml:space="preserve">
+    <value>Use a list of regular expressions to build the names of the folders from the name of the database (f.e. "^(AppFabric)" groups all databases in a folder called AppFabric if they start with the same string)</value>
+  </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Use a separate folder for readonly databases</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Group databases in folders by name</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsRegularExpressions" xml:space="preserve">
+    <value>Build folder name by regular expressions</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Separate folders for readonly databases</value>

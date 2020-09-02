@@ -88,6 +88,15 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use a list of regular expressions to build the names of the folders from the name of the database (f.e. &quot;^(AppFabric)&quot; groups all databases in a folder called AppFabric if they start with the same string) ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsRegularExpressions {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsRegularExpressions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use a separate folder for readonly databases ähnelt.
         /// </summary>
         internal static string PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases {
@@ -102,6 +111,15 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyDisplayNameDatabaseFolderOptionsGroupDatabasesByName {
             get {
                 return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsGroupDatabasesByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Build folder name by regular expressions ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsRegularExpressions {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsRegularExpressions", resourceCulture);
             }
         }
         
