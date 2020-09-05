@@ -90,7 +90,6 @@
 
             node.TreeView.BeginUpdate();
 
-            var indexForInsertNextDatabaseFolder = -1;
             var indexForInsertGlobalReadonlyDatabaseFolder = -1;
 
             for (var nodeIndex = 0; nodeIndex < node.Nodes.Count; nodeIndex++)
@@ -107,10 +106,10 @@
                 if (childNodeUrnPath != "Server/Database")
                     continue;
 
-                if (indexForInsertNextDatabaseFolder < 0)
-                    indexForInsertGlobalReadonlyDatabaseFolder = indexForInsertNextDatabaseFolder = nodeIndex;
+                if (indexForInsertGlobalReadonlyDatabaseFolder < 0)
+                    indexForInsertGlobalReadonlyDatabaseFolder = nodeIndex;
 
-                var databaseFolderNode = GetOrCreateFolderNode(node, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder, ref indexForInsertNextDatabaseFolder);
+                var databaseFolderNode = GetOrCreateFolderNode(node, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder);
                 if (databaseFolderNode == null)
                     continue;
 
@@ -171,20 +170,28 @@
             }
         }
 
-        private TreeNode GetOrCreateFolderNode(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder, ref int indexForInsertNextDatabaseFolder)
+        private TreeNode GetOrCreateFolderNode(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder)
         {
             TreeNode databaseFolderNode = null;
 
             if (Options.GroupDatabasesByName)
             {
                 var currentNode = rootNode;
-                var newIndex = indexForInsertNextDatabaseFolder;
                 foreach (var databaseFolder in GetDatabaseFolderNameFromNode(childNode, childNodeInformation))
                 {
+                    var newIndex = currentNode == rootNode ? indexForInsertGlobalReadonlyDatabaseFolder : 0;
                     if (currentNode.Nodes.ContainsKey(databaseFolder))
                         databaseFolderNode = currentNode.Nodes[databaseFolder];
                     else
                     {
+                        for (; newIndex < currentNode.Nodes.Count; newIndex++)
+                        {
+                            var nodeAtIndex = currentNode.Nodes[newIndex];
+                            if ((nodeAtIndex.Name != LocalizedReadonly &&
+                                String.CompareOrdinal(nodeAtIndex.Name, databaseFolder) > 0) ||
+                                !NodeIsADatabaseFolder(nodeAtIndex))
+                                break;
+                        }
                         databaseFolderNode = new DatabaseFolderTreeNode(currentNode)
                         {
                             Name = databaseFolder,
@@ -194,9 +201,6 @@
                             SelectedImageIndex = currentNode.ImageIndex
                         };
                         currentNode.Nodes.Insert(newIndex, databaseFolderNode);
-                        if (currentNode == rootNode)
-                            indexForInsertNextDatabaseFolder++;
-                        newIndex = 0;
                     }
                     currentNode = databaseFolderNode;
                 }
