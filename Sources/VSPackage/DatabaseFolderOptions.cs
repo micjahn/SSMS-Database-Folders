@@ -21,7 +21,7 @@
         [CategoryResources(nameof(DatabaseFolderOptions) + "DatabaseFolderDisplayOptions")]
         [DisplayNameResources(nameof(DatabaseFolderOptions) + nameof(SeparateReadonlyDatabases))]
         [DescriptionResources(nameof(DatabaseFolderOptions) + nameof(SeparateReadonlyDatabases))]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool SeparateReadonlyDatabases { get; set; } = false;
 
         [CategoryResources(nameof(DatabaseFolderOptions) + "DatabaseFolderDisplayOptions")]

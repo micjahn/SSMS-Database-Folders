@@ -3,6 +3,7 @@ extern alias Ssms2014;
 extern alias Ssms2016;
 extern alias Ssms2017;
 extern alias Ssms18;
+extern alias Ssms19;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
@@ -130,6 +131,12 @@ namespace SsmsDatabaseFolders
 
                     switch (ssmsInterfacesVersion.FileMajorPart)
                     {
+                        case 19:
+                        case 17:
+                        case 16:
+                            debug_message("SsmsVersion:19");
+                            return new Ssms19::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+
                         case 15:
                             debug_message("SsmsVersion:18");
                             return new Ssms18::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
@@ -156,8 +163,8 @@ namespace SsmsDatabaseFolders
                     }
                 }
 
-                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 2016.");
-                return new Ssms2016::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 19.x.");
+                return new Ssms19::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
             }
             catch (Exception ex)
             {
