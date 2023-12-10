@@ -35,7 +35,7 @@ namespace SsmsDatabaseFolders
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
-    [Guid(SsmsDatabaseFoldersPackage.PackageGuidString)]
+    [Guid(PackageGuidString)]
     [ProvideAutoLoad("d114938f-591c-46cf-a785-500a82d97410")] //CommandGuids.ObjectExplorerToolWindowIDString
     [ProvideOptionPage(typeof(DatabaseFolderOptions), "SQL Server Object Explorer", "Database Folders", 114, 116, true)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
@@ -45,9 +45,9 @@ namespace SsmsDatabaseFolders
         /// SsmsDatabaseFoldersPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "2D162307-505C-4F59-9E87-E7E579C4BF9D";
-        public static readonly Guid PackageGuid = new Guid(SsmsDatabaseFoldersPackage.PackageGuidString);
+        public static readonly Guid PackageGuid = new Guid(PackageGuidString);
 
-        public DatabaseFolderOptions Options { get; set; }
+        public DatabaseFolderOptions Options { get; set; } = new DatabaseFolderOptions();
         
         private IObjectExplorerExtender _objectExplorerExtender;
 
@@ -72,14 +72,6 @@ namespace SsmsDatabaseFolders
         {
             base.Initialize();
 
-            // OutputWindowPane for debug messages
-#if DEBUG
-            var outputWindow = (IVsOutputWindow)GetService(typeof(SVsOutputWindow));
-            var guidPackage = new Guid(PackageGuidString);
-            outputWindow.CreatePane(guidPackage, "Database Folders debug output", 1, 0);
-            outputWindow.GetPane(ref guidPackage, out _outputWindowPane);
-#endif
-
             // Link with VS options.
             object obj;
             (this as IVsPackage).GetAutomationObject("SQL Server Object Explorer.Database Folders", out obj);
@@ -89,6 +81,33 @@ namespace SsmsDatabaseFolders
 
             if (_objectExplorerExtender != null)
                 AttachTreeViewEvents();
+
+            ToggleDebugOutput();
+        }
+
+        private void ToggleDebugOutput()
+        {
+            if (Options.EnableDebugOutput)
+            {
+                if (_outputWindowPane == null)
+                {
+                    // OutputWindowPane for debug messages
+                    var outputWindow = (IVsOutputWindow)GetService(typeof(SVsOutputWindow));
+                    var guidPackage = PackageGuid;
+                    outputWindow.CreatePane(PackageGuid, "Database Folders debug output", 1, 0);
+                    outputWindow.GetPane(ref guidPackage, out _outputWindowPane);
+                }
+            }
+            else
+            {
+                if (_outputWindowPane != null)
+                {
+                    var outputWindow = (IVsOutputWindow)GetService(typeof(SVsOutputWindow));
+                    var guidPackage = PackageGuid;
+                    outputWindow.DeletePane(ref guidPackage);
+                    _outputWindowPane = null;
+                }
+            }
         }
 
         private void DelayAddSkipLoadingReg()
@@ -97,7 +116,7 @@ namespace SsmsDatabaseFolders
             delay.Tick += delegate (object o, EventArgs e)
             {
                 delay.Stop();
-                var myPackage = this.UserRegistryRoot.CreateSubKey(@"Packages\{" + SsmsDatabaseFoldersPackage.PackageGuidString + "}");
+                var myPackage = this.UserRegistryRoot.CreateSubKey(@"Packages\{" + PackageGuidString + "}");
                 myPackage.SetValue("SkipLoading", 1);
             };
             delay.Interval = 1000;
@@ -282,20 +301,16 @@ namespace SsmsDatabaseFolders
             
         }
 
-        public void debug_message(string message)
-        {
-            if (_outputWindowPane != null)
-            {
-                _outputWindowPane.OutputString(message);
-                _outputWindowPane.OutputString("\r\n");
-            }
-        }
-
         public void debug_message(string message, params object[] args)
         {
+            ToggleDebugOutput();
+
             if (_outputWindowPane != null)
             {
-                _outputWindowPane.OutputString(String.Format(message, args));
+                if (args == null || args.Length < 1)
+                    _outputWindowPane.OutputString(message);
+                else
+                    _outputWindowPane.OutputString(String.Format(message, args));
                 _outputWindowPane.OutputString("\r\n");
             }
         }
@@ -313,7 +328,7 @@ namespace SsmsDatabaseFolders
                 (UInt32)entryType,
                 this.ToString(),
                 message,
-                SsmsDatabaseFoldersPackage.PackageGuid);
+                PackageGuid);
         }
 
         private string GetLocalizedString(string resourceKey)

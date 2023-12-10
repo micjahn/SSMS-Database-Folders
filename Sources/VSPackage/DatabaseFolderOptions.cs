@@ -25,6 +25,12 @@
         public bool SeparateReadonlyDatabases { get; set; } = false;
 
         [CategoryResources(nameof(DatabaseFolderOptions) + "DatabaseFolderDisplayOptions")]
+        [DisplayNameResources(nameof(DatabaseFolderOptions) + nameof(EnableDebugOutput))]
+        [DescriptionResources(nameof(DatabaseFolderOptions) + nameof(EnableDebugOutput))]
+        [DefaultValue(false)]
+        public bool EnableDebugOutput { get; set; } = false;
+
+        [CategoryResources(nameof(DatabaseFolderOptions) + "DatabaseFolderDisplayOptions")]
         [DisplayNameResources(nameof(DatabaseFolderOptions) + nameof(RegularExpressions))]
         [DescriptionResources(nameof(DatabaseFolderOptions) + nameof(RegularExpressions))]
         [Editor("System.Windows.Forms.Design.StringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]

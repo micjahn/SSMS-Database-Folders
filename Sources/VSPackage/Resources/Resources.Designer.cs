@@ -79,6 +79,15 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show separate debug output pane ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsEnableDebugOutput {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsEnableDebugOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Activates grouping of databases in folders by using that part of the database names before the first underscore ähnelt.
         /// </summary>
         internal static string PropertyDescriptionDatabaseFolderOptionsGroupDatabasesByName {
@@ -102,6 +111,15 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases {
             get {
                 return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show separate debug output pane ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsEnableDebugOutput {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsEnableDebugOutput", resourceCulture);
             }
         }
         

@@ -123,6 +123,9 @@
   <data name="PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions" xml:space="preserve">
     <value>Database Folder Display Options</value>
   </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
+    <value>Show separate debug output pane</value>
+  </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Activates grouping of databases in folders by using that part of the database names before the first underscore</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Use a separate folder for readonly databases</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
+    <value>Show separate debug output pane</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsGroupDatabasesByName" xml:space="preserve">
     <value>Group databases in folders by name</value>
