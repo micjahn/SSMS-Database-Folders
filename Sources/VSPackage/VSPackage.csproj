@@ -197,29 +197,34 @@
   <PropertyGroup>
     <PostBuildEvent>NET SESSION &gt; NUL
 IF %25ERRORLEVEL%25 EQU 0 (
-   ECHO elevated, try copy
+   ECHO elevated, try copy build results to extension directory of SSMS
 ) ELSE (
-   ECHO not elevated
+   ECHO not elevated, can't automatically copy build results to extension directory of SSMS
    EXIT /B 0
 )
 
-if exist "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\" (
-   if not exist "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\" (
-      md "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders"
-   )
-   if not exist "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\de\" (
-      md "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\de"
-   )
-   copy "$(TargetDir)\SsmsDatabaseFolders.Interfaces.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms18.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2012.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2014.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2016.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2017.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.VSPackage.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
-   copy "$(TargetDir)\SsmsDatabaseFolders.VSPackage.pkgdef" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\"
+SET SSMS_EXTENSION_DIR=C:\Program Files (x86)\Microsoft SQL Server Management Studio 19\Common7\IDE\Extensions
 
-   copy "$(TargetDir)\de\SsmsDatabaseFolders.VSPackage.resources.dll" "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions\DatabaseFolders\de\"
+if not exist "%25SSMS_EXTENSION_DIR%25\" SET SSMS_EXTENSION_DIR="C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Extensions
+
+if exist "%25SSMS_EXTENSION_DIR%25\" (
+   echo "%25SSMS_EXTENSION_DIR%25\"
+   if not exist "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\" (
+      md "%25SSMS_EXTENSION_DIR%25\DatabaseFolders"
+   )
+   if not exist "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\de\" (
+      md "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\de"
+   )
+   copy "$(TargetDir)\SsmsDatabaseFolders.Interfaces.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms18.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2012.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2014.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2016.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.Ssms2017.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.VSPackage.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+   copy "$(TargetDir)\SsmsDatabaseFolders.VSPackage.pkgdef" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\"
+
+   copy "$(TargetDir)\de\SsmsDatabaseFolders.VSPackage.resources.dll" "%25SSMS_EXTENSION_DIR%25\DatabaseFolders\de\"
 )
 </PostBuildEvent>
   </PropertyGroup>
