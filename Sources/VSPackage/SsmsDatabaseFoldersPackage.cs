@@ -51,10 +51,7 @@ namespace SsmsDatabaseFolders
         
         private IObjectExplorerExtender _objectExplorerExtender;
 
-        // Ignore never assigned to warning for release build.
-#pragma warning disable CS0649
-        private IVsOutputWindowPane _outputWindowPane;
-#pragma warning restore CS0649
+        private IVsOutputWindowPane _outputWindowPane = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SsmsDatabaseFoldersPackage"/> class.
@@ -66,8 +63,6 @@ namespace SsmsDatabaseFolders
             // not sited yet inside Visual Studio environment. The place to do all the other
             // initialization is the Initialize method.
         }
-
-        #region Package Members
 
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
@@ -94,17 +89,6 @@ namespace SsmsDatabaseFolders
 
             if (_objectExplorerExtender != null)
                 AttachTreeViewEvents();
-
-            // Reg setting is removed after initialize. Wait short delay then recreate it.
-            DelayAddSkipLoadingReg();
-        }
-
-        #endregion
-
-        private void AddSkipLoadingReg()
-        {
-            var myPackage = this.UserRegistryRoot.CreateSubKey(@"Packages\{" + SsmsDatabaseFoldersPackage.PackageGuidString + "}");
-            myPackage.SetValue("SkipLoading", 1);
         }
 
         private void DelayAddSkipLoadingReg()
@@ -113,7 +97,8 @@ namespace SsmsDatabaseFolders
             delay.Tick += delegate (object o, EventArgs e)
             {
                 delay.Stop();
-                AddSkipLoadingReg();
+                var myPackage = this.UserRegistryRoot.CreateSubKey(@"Packages\{" + SsmsDatabaseFoldersPackage.PackageGuidString + "}");
+                myPackage.SetValue("SkipLoading", 1);
             };
             delay.Interval = 1000;
             delay.Start();
@@ -143,18 +128,22 @@ namespace SsmsDatabaseFolders
 
                         case 14:
                             debug_message("SsmsVersion:2017");
+                            DelayAddSkipLoadingReg();
                             return new Ssms2017::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
 
                         case 13:
                             debug_message("SsmsVersion:2016");
+                            DelayAddSkipLoadingReg();
                             return new Ssms2016::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
 
                         case 12:
                             debug_message("SsmsVersion:2014");
+                            DelayAddSkipLoadingReg();
                             return new Ssms2014::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
 
                         case 11:
                             debug_message("SsmsVersion:2012");
+                            DelayAddSkipLoadingReg();
                             return new Ssms2012::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
 
                         default:
