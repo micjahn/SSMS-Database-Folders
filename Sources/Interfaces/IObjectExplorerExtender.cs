@@ -7,5 +7,6 @@ namespace SsmsDatabaseFolders
         bool GetNodeExpanding(TreeNode node);
         TreeView GetObjectExplorerTreeView();
         void ReorganizeDatabaseNodes(TreeNode node);
+        void RefreshDatabaseNode();
     }
 }

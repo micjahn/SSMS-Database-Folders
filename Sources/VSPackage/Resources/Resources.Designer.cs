@@ -70,11 +70,29 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        /// </summary>
+        internal static string PropertyCategoryDatabaseFolderOptionsActive {
+            get {
+                return ResourceManager.GetString("PropertyCategoryDatabaseFolderOptionsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Database Folder Display Options ähnelt.
         /// </summary>
         internal static string PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions {
             get {
                 return ResourceManager.GetString("PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Group databases within the Object Explorer into folders. ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsEnabled {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsEnabled", resourceCulture);
             }
         }
         
@@ -111,6 +129,15 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases {
             get {
                 return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enabled ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsEnabled {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsEnabled", resourceCulture);
             }
         }
         

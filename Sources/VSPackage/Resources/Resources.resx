@@ -120,8 +120,14 @@
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Readonly</value>
   </data>
+  <data name="PropertyCategoryDatabaseFolderOptionsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions" xml:space="preserve">
     <value>Database Folder Display Options</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsEnabled" xml:space="preserve">
+    <value>Group databases within the Object Explorer into folders.</value>
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
     <value>Show separate debug output pane</value>
@@ -134,6 +140,9 @@
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Use a separate folder for readonly databases</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsEnabled" xml:space="preserve">
+    <value>Enabled</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
     <value>Show separate debug output pane</value>

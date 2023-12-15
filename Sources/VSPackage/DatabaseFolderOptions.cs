@@ -12,6 +12,12 @@
 
     public class DatabaseFolderOptions : DialogPage, IDatabaseFolderOptions
     {
+        [CategoryResources(nameof(DatabaseFolderOptions) + "Active")]
+        [DisplayNameResources(nameof(DatabaseFolderOptions) + nameof(Enabled))]
+        [DescriptionResources(nameof(DatabaseFolderOptions) + nameof(Enabled))]
+        [DefaultValue(true)]
+        public bool Enabled { get; set; } = true;
+
         [CategoryResources(nameof(DatabaseFolderOptions) + "DatabaseFolderDisplayOptions")]
         [DisplayNameResources(nameof(DatabaseFolderOptions) + nameof(GroupDatabasesByName))]
         [DescriptionResources(nameof(DatabaseFolderOptions) + nameof(GroupDatabasesByName))]
@@ -64,6 +70,16 @@
                 {
                     RegularExpressions.Add(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(base64Element)));
                 }
+            }
+        }
+
+        [ReadOnly(true)]
+        [Browsable(false)]
+        public bool IsEnabledAndAnOptionSet
+        {
+            get
+            {
+                return Enabled && (GroupDatabasesByName || SeparateReadonlyDatabases);
             }
         }
 

@@ -120,8 +120,14 @@
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Schreibgeschützt</value>
   </data>
+  <data name="PropertyCategoryDatabaseFolderOptionsActive" xml:space="preserve">
+    <value>Aktivieren</value>
+  </data>
   <data name="PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions" xml:space="preserve">
     <value>Anzeigeoptionen für Ordner</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsEnabled" xml:space="preserve">
+    <value>Aktiviert das Gruppieren von Datenbanken in Ordner</value>
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
     <value>Zeigt ein separates Fenster mit Debug-Ausgaben an</value>
@@ -134,6 +140,9 @@
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Aktiviert das Erzeugen von separaten Ordner für schreibgeschützte Datenbanken</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsEnabled" xml:space="preserve">
+    <value>Aktiviert</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsEnableDebugOutput" xml:space="preserve">
     <value>Separates Fenster mit Debug-Ausgaben</value>

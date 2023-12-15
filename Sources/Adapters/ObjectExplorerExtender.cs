@@ -41,6 +41,21 @@
             return null;
         }
 
+        public void RefreshDatabaseNode()
+        {
+            var objectExplorer = (IObjectExplorerService)Package.GetService(typeof(IObjectExplorerService));
+
+            objectExplorer.GetSelectedNodes(out var nodeCount, out var nodes);
+
+            var node = (nodeCount > 0 ? nodes[0] : null);
+
+            if (node != null)
+            {
+                objectExplorer.SynchronizeTree(node.Parent);
+                SendKeys.Send("{F5}");
+            }
+        }
+
         private INodeInformation GetNodeInformation(TreeNode node)
         {
             INodeInformation result = null;
@@ -77,7 +92,7 @@
 
         public void ReorganizeDatabaseNodes(TreeNode node)
         {
-            if (!Options.GroupDatabasesByName && !Options.SeparateReadonlyDatabases)
+            if (!Options.IsEnabledAndAnOptionSet)
                 return;
             if (node.Nodes.Count <= 1)
                 return;

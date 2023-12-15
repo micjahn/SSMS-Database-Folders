@@ -1,20 +1,20 @@
-﻿extern alias Ssms2012;
-extern alias Ssms2014;
-extern alias Ssms2016;
-extern alias Ssms2017;
-extern alias Ssms18;
-extern alias Ssms19;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-
-namespace SsmsDatabaseFolders
+﻿namespace SsmsDatabaseFolders
 {
+    extern alias Ssms18;
+    extern alias Ssms19;
+    extern alias Ssms2012;
+    extern alias Ssms2014;
+    extern alias Ssms2016;
+    extern alias Ssms2017;
     using Localization;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using System;
+    using System.ComponentModel.Design;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Windows.Forms;
 
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -37,6 +37,7 @@ namespace SsmsDatabaseFolders
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
     [ProvideAutoLoad("d114938f-591c-46cf-a785-500a82d97410")] //CommandGuids.ObjectExplorerToolWindowIDString
+    [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(DatabaseFolderOptions), "SQL Server Object Explorer", "Database Folders", 114, 116, true)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class SsmsDatabaseFoldersPackage : Package
@@ -47,7 +48,18 @@ namespace SsmsDatabaseFolders
         public const string PackageGuidString = "2D162307-505C-4F59-9E87-E7E579C4BF9D";
         public static readonly Guid PackageGuid = new Guid(PackageGuidString);
 
-        public DatabaseFolderOptions Options { get; set; } = new DatabaseFolderOptions();
+        private DatabaseFolderOptions _options;
+        public DatabaseFolderOptions Options
+        {
+            get
+            {
+                return _options ?? (_options = new DatabaseFolderOptions());
+            }
+            set
+            {
+                _options = value;
+            }
+        }
         
         private IObjectExplorerExtender _objectExplorerExtender;
 
@@ -83,6 +95,14 @@ namespace SsmsDatabaseFolders
                 AttachTreeViewEvents();
 
             ToggleDebugOutput();
+
+            var mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            if (null != mcs)
+            {
+                var id = new CommandID(PkgCmdIDList.GuidMenuAndCommandsCmdSet, PkgCmdIDList.cmdidToggleCommand);
+                var command = new OleMenuCommand(new EventHandler(CommandToggleDatabaseFolders), id);
+                mcs.AddCommand(command);
+            }
         }
 
         private void ToggleDebugOutput()
@@ -108,6 +128,16 @@ namespace SsmsDatabaseFolders
                     _outputWindowPane = null;
                 }
             }
+        }
+
+        private void CommandToggleDatabaseFolders(object caller, EventArgs args)
+        {
+            debug_message("toggle database folders");
+            Options.Enabled = !Options.Enabled;
+            debug_message("Enabled: " + Options.Enabled);
+            debug_message("GroupDatabasesByName: " + Options.GroupDatabasesByName);
+            debug_message("SeparateReadonlyDatabases: " + Options.SeparateReadonlyDatabases);
+            _objectExplorerExtender.RefreshDatabaseNode();
         }
 
         private void DelayAddSkipLoadingReg()
@@ -334,6 +364,12 @@ namespace SsmsDatabaseFolders
         private string GetLocalizedString(string resourceKey)
         {
             return ResourcesAccess.GetString(resourceKey) ?? resourceKey;
+        }
+
+        internal static class PkgCmdIDList
+        {
+            public static Guid GuidMenuAndCommandsCmdSet = new Guid("9797EBA2-2C3C-48F7-B207-AD5999F2101F");
+            public const int cmdidToggleCommand = 0x2001;
         }
     }
 }
