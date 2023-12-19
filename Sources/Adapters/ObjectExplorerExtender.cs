@@ -44,16 +44,34 @@
         public void RefreshDatabaseNode()
         {
             var objectExplorer = (IObjectExplorerService)Package.GetService(typeof(IObjectExplorerService));
+            var treeView = GetObjectExplorerTreeView();
 
-            objectExplorer.GetSelectedNodes(out var nodeCount, out var nodes);
-
-            var node = (nodeCount > 0 ? nodes[0] : null);
-
-            if (node != null)
+            if (treeView != null)
             {
-                objectExplorer.SynchronizeTree(node.Parent);
-                SendKeys.Send("{F5}");
+                foreach (TreeNode node in treeView.Nodes)
+                {
+                    if (RefreshDatabaseNodebyNode(objectExplorer, node))
+                        break;
+                }
             }
+        }
+
+        private bool RefreshDatabaseNodebyNode(IObjectExplorerService objectExplorer, TreeNode node)
+        {
+            if (NodeIsDatabasesFolderNode(node))
+            {
+                var nodeInformation = GetNodeInformation(node);
+                objectExplorer.SynchronizeTree(nodeInformation);
+                SendKeys.Send("{F5}");
+                return true;
+            }
+
+            foreach (TreeNode childNode in node.Nodes)
+            {
+                if (RefreshDatabaseNodebyNode(objectExplorer, childNode))
+                    return true;
+            }
+            return false;
         }
 
         private INodeInformation GetNodeInformation(TreeNode node)
