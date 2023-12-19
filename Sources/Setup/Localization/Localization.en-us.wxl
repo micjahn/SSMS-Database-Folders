@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WixLocalization Culture="de-de" xmlns="http://schemas.microsoft.com/wix/2006/localization">
-  <String Id="DowngradeErrorMessage" Overridable="yes">[ProductName] [ProductVersion] oder eine aktuellere Version wurde bereits installiert.</String>
-  <String Id="DisallowUpgradeErrorMessage" Overridable="yes">[ProductName] wurde bereits installiert. Bitte deinstallieren Sie [ProductName] und installieren Sie dann Version [ProductVersion].</String>
+  <String Id="DowngradeErrorMessage" Overridable="yes">[ProductName] [ProductVersion] or a newer version is installed.</String>
+  <String Id="DisallowUpgradeErrorMessage" Overridable="yes">[ProductName] is already installed. Please deinstall [ProductName] and install the version [ProductVersion] afterwards.</String>
   <String Id="DescriptionFeatureSsms18" Overridable="yes">Installs the components for SSMS 18.</String>
+  <String Id="DescriptionFeatureSsms19" Overridable="yes">Installs the components for SSMS 19.</String>
 </WixLocalization>

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Directories für Verweise im Setup.
--->
 <Include>
-   <?define 3rdPartyDir="..\..\3rdParty\"?>
-
    <?define ConfigDir="$(sys.CURRENTDIR)Config\"?>
-
-   <?define SharedSetupSources="$(var.SolutionDir)Source\SharedSource\Setup\"?>
 
    <?define ResourcesDir="..\..\Resources\"?>
 </Include>

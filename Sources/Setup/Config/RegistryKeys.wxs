@@ -9,5 +9,13 @@
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
-	</Fragment>
+    <Property Id="SSMS19INSTALLROOT" Value="C:\Program Files (x86)\Microsoft SQL Server Management Studio 19">
+      <RegistrySearch
+        Id="SSMS19INSTALLROOT"
+        Root="HKLM"
+        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\19"
+        Name="SSMSInstallRoot"
+        Type="raw" />
+    </Property>
+  </Fragment>
 </Wix>

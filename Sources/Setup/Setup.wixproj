@@ -106,6 +106,14 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms19.csproj">
+      <Name>Ssms19</Name>
+      <Project>{6d22dd63-cb1a-4b13-aae5-a1ee7f914543}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\Adapters\Ssms2012.csproj">
       <Name>Ssms2012</Name>
       <Project>{35aa603a-43f7-4473-bb50-083b46ea19d2}</Project>
