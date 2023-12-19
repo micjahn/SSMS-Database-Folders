@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="SsmsDatabaseFolders.Michael Jahn.CEB7602F-8130-4A69-BCA3-8DA1C17B4B7D" Version="1.0.1" Language="en-US" Publisher="Michael Jahn" />
+        <Identity Id="SsmsDatabaseFolders.Michael Jahn.CEB7602F-8130-4A69-BCA3-8DA1C17B4B7D" Version="1.0.2" Language="en-US" Publisher="Michael Jahn" />
         <DisplayName>SsmsDatabaseFolders</DisplayName>
         <Description xml:space="preserve">SSMS Database Group Folders</Description>
         <License>LICENSE.rtf</License>
