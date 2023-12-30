@@ -40,7 +40,7 @@
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(DatabaseFolderOptions), "SQL Server Object Explorer", "Database Folders", 114, 116, true)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class SsmsDatabaseFoldersPackage : Package
+    public sealed class SsmsDatabaseFoldersPackage : Package, IDebugOutput
     {
         /// <summary>
         /// SsmsDatabaseFoldersPackage GUID string.

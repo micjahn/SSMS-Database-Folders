@@ -270,5 +270,14 @@
             }
             return databaseFolderNode;
         }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        private void debug_message(string message, params object[] args)
+        {
+            if (Package is IDebugOutput)
+            {
+                ((IDebugOutput)Package).debug_message(message, args);
+            }
+        }
     }
 }
