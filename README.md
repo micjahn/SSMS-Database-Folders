@@ -29,5 +29,18 @@ Please report any issues to <https://github.com/micjahn/SSMS-Database-Folders/is
 
 ## Change Log
 
+### v1.0.3 (2024-08-20)
+* added support for SSMS 20
+
+### v1.0.2 (2023-12-19)
+* added support for SSMS 19
+* added button to the SSMS toolbar for temporary activation/deactivation of the addin
+* added option for showing debug output
+
+### v1.0.1 (2020-09-05)
+* added option for regulare expressions
+* sort folders
+
+
 ### v1.0 (2020-xx-xx)
 * first release.
