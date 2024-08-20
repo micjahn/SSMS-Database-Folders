@@ -14,7 +14,7 @@
     <Buttons>
       <Button guid="guidMenuAndCommandsCmdSet" id="cmdidToggleCommand" priority="0x100" type="Button">
         <Parent guid="guidMenuAndCommandsCmdSet" id="MyMainToolbarGroup"/>
-        <Icon guid="ImageCatalogGuid" id="GenericChart"/>
+        <Icon guid="ImageCatalogGuid" id="TreeView"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>Toggle Database Folder</ButtonText>
