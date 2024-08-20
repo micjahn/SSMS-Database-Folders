@@ -28,6 +28,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Sources\Setup\Setu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssms19", "Sources\Adapters\Ssms19.csproj", "{6D22DD63-CB1A-4B13-AAE5-A1EE7F914543}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssms20", "Sources\Adapters\Ssms20.csproj", "{59AD9723-9328-421C-85B8-B25AF86565FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,18 @@ Global
 		{6D22DD63-CB1A-4B13-AAE5-A1EE7F914543}.Release|x64.Build.0 = Release|Any CPU
 		{6D22DD63-CB1A-4B13-AAE5-A1EE7F914543}.Release|x86.ActiveCfg = Release|Any CPU
 		{6D22DD63-CB1A-4B13-AAE5-A1EE7F914543}.Release|x86.Build.0 = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|x64.Build.0 = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{59AD9723-9328-421C-85B8-B25AF86565FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

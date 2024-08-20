@@ -23,6 +23,7 @@
     <PropertyRef Id="Prerequisits" />
     <PropertyRef Id="SSMS18INSTALLROOT" />
     <PropertyRef Id="SSMS19INSTALLROOT" />
+    <PropertyRef Id="SSMS20INSTALLROOT" />
 
     <Media Id="1" Cabinet="media.cab" EmbedCab="yes" CompressionLevel="high" />
     
@@ -61,6 +62,16 @@
           </Directory>
         </Directory>
       </Directory>
+      <Directory Id="SSMS20INSTALLROOT" Name="[SSMS20INSTALLROOT]">
+        <Directory Id="SSMS20.Common7" Name="Common7">
+          <Directory Id="SSMS20.IDE" Name="IDE">
+            <Directory Id="SSMS20.Extensions" Name="Extensions">
+              <Directory Id="SSMS20.Extensions.DF" Name="SsmsDatabaseFolders">
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
     </Directory>
 
     <!-- files -->
@@ -82,6 +93,9 @@
       </Component>
       <Component Id="Files.Ssms19" Guid="{B7966FF2-F818-4146-B658-D314C520794D}">
         <File Id="File.Ssms19" Source="$(var.Ssms19.TargetPath)" />
+      </Component>
+      <Component Id="Files.Ssms20" Guid="{84DF5E0A-3F85-4869-B485-A29E29CF071E}">
+        <File Id="File.Ssms20" Source="$(var.Ssms20.TargetPath)" />
       </Component>
       <Component Id="Files.Interfaces" Guid="{E0018001-55B3-46E9-9ADB-6E8306A1E132}">
         <File Id="File.Interfaces" Source="$(var.Interfaces.TargetPath)" />
@@ -126,6 +140,21 @@
       </Component>
     </DirectoryRef>
     
+    <DirectoryRef Id="SSMS20.Extensions.DF">
+      <Component Id="Files.Ssms20.Package" Guid="{0254EF84-A56A-44FD-A9FD-E774DAE4D01E}">
+        <File Id="File.Ssms20.pkgdef" Source="$(var.VSPackage.TargetDir)SsmsDatabaseFolders.VSPackage.pkgdef" />
+        <File Id="File.Ssms20.vsixmanifest" Source="$(var.VSPackage.TargetDir)extension.vsixmanifest" />
+        <IniFile Id="Ini20"
+                 Action="addLine"
+                 Directory="SSMS20.Extensions.DF"
+                 Section="$RootKey$\Packages\{2d162307-505c-4f59-9e87-e7e579c4bf9d}"
+                 Name="SsmsDatabaseFolders.VSPackage.pkgdef"
+                 Key="&quot;CodeBase&quot;"
+                 Value="&quot;[INSTALLLOCATION]$(var.VSPackage.TargetFileName)&quot;" />
+        <Condition>SSMS20INSTALLROOT</Condition>
+      </Component>
+    </DirectoryRef>
+    
     <!-- features -->
     <Feature Id="CompleteInstall" Title="$(var.ProductName)" Level="1" InstallDefault="local" AllowAdvertise="no">
       <Feature Id="Ssms18Features" Title="Microsoft SQL Management Studio 18" Level="1"
@@ -138,11 +167,13 @@
         <ComponentRef Id="Files.Ssms2017" />
         <ComponentRef Id="Files.Ssms18" />
         <ComponentRef Id="Files.Ssms19" />
+        <ComponentRef Id="Files.Ssms20" />
         <ComponentRef Id="Files.Interfaces" />
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
         <ComponentRef Id="Files.Ssms18.Package" />
         <ComponentRef Id="Files.Ssms19.Package" />
+        <ComponentRef Id="Files.Ssms20.Package" />
       </Feature>
       <Feature Id="Ssms19Features" Title="Microsoft SQL Management Studio 19" Level="1"
                Description="!(loc.DescriptionFeatureSsms19)"
@@ -154,11 +185,31 @@
         <ComponentRef Id="Files.Ssms2017" />
         <ComponentRef Id="Files.Ssms18" />
         <ComponentRef Id="Files.Ssms19" />
+        <ComponentRef Id="Files.Ssms20" />
         <ComponentRef Id="Files.Interfaces" />
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
         <ComponentRef Id="Files.Ssms18.Package" />
         <ComponentRef Id="Files.Ssms19.Package" />
+        <ComponentRef Id="Files.Ssms20.Package" />
+      </Feature>
+      <Feature Id="Ssms20Features" Title="Microsoft SQL Management Studio 20" Level="1"
+               Description="!(loc.DescriptionFeatureSsms20)"
+               InstallDefault="local" AllowAdvertise="no" TypicalDefault="install">
+
+        <ComponentRef Id="Files.Ssms2012" />
+        <ComponentRef Id="Files.Ssms2014" />
+        <ComponentRef Id="Files.Ssms2016" />
+        <ComponentRef Id="Files.Ssms2017" />
+        <ComponentRef Id="Files.Ssms18" />
+        <ComponentRef Id="Files.Ssms19" />
+        <ComponentRef Id="Files.Ssms20" />
+        <ComponentRef Id="Files.Interfaces" />
+        <ComponentRef Id="Files.VSPackage" />
+        <ComponentRef Id="Files.VSPackage.de" />
+        <ComponentRef Id="Files.Ssms18.Package" />
+        <ComponentRef Id="Files.Ssms19.Package" />
+        <ComponentRef Id="Files.Ssms20.Package" />
       </Feature>
 
     </Feature>

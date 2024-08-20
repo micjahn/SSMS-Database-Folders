@@ -1,6 +1,7 @@
 SsmsDatabaseFolders.Interfaces.dll
 SsmsDatabaseFolders.Ssms18.dll
 SsmsDatabaseFolders.Ssms19.dll
+SsmsDatabaseFolders.Ssms20.dll
 SsmsDatabaseFolders.Ssms2012.dll
 SsmsDatabaseFolders.Ssms2014.dll
 SsmsDatabaseFolders.Ssms2016.dll

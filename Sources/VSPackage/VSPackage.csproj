@@ -164,6 +164,11 @@
       <Name>Ssms19</Name>
       <Aliases>Ssms19</Aliases>
     </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms20.csproj">
+      <Project>{59ad9723-9328-421c-85b8-b25af86565fa}</Project>
+      <Name>Ssms20</Name>
+      <Aliases>Ssms20</Aliases>
+    </ProjectReference>
     <ProjectReference Include="..\Adapters\Ssms2012.csproj">
       <Project>{35aa603a-43f7-4473-bb50-083b46ea19d2}</Project>
       <Name>Ssms2012</Name>

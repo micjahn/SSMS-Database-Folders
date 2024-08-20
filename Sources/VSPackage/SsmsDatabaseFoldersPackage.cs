@@ -2,6 +2,7 @@
 {
     extern alias Ssms18;
     extern alias Ssms19;
+    extern alias Ssms20;
     extern alias Ssms2012;
     extern alias Ssms2014;
     extern alias Ssms2016;
@@ -165,6 +166,10 @@
 
                     switch (ssmsInterfacesVersion.FileMajorPart)
                     {
+                        case 20:
+                            debug_message("SsmsVersion:20");
+                            return new Ssms20::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+
                         case 19:
                         case 17:
                         case 16:
@@ -201,8 +206,8 @@
                     }
                 }
 
-                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 19.x.");
-                return new Ssms19::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 20.x.");
+                return new Ssms20::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
             }
             catch (Exception ex)
             {

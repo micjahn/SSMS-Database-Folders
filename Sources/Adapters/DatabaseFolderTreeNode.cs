@@ -2,6 +2,7 @@
 {
     using System;
     using System.Drawing;
+    using System.Reflection;
     using System.Windows.Forms;
 
     using Microsoft.SqlServer.Management.UI.VSIntegration.ObjectExplorer;
@@ -9,10 +10,21 @@
     internal class DatabaseFolderTreeNode : HierarchyTreeNode, INodeWithMenu, IServiceProvider
     {
         readonly object parent;
+        private INavigableItem containedItem;
+
+        public INavigableItem ContainedItem => containedItem;
 
         public DatabaseFolderTreeNode(TreeNode parent)
         {
             this.parent = parent;
+            var containedItemProperty = parent.GetType().GetProperty("ContainedItem", BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+            if (containedItemProperty != null)
+                containedItem = (INavigableItem)containedItemProperty.GetValue(parent, null);
+        }
+
+        public void EnumerateChildren(bool buildAsync)
+        {
+            EnumerateChildren();
         }
 
         public override Icon Icon => (parent as INodeWithIcon)?.Icon;
