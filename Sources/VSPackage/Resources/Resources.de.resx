@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultCustomFolderName" xml:space="preserve">
+    <value>&lt;Lege einen Namen fest&gt;</value>
+  </data>
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Schreibgeschützt</value>
   </data>
@@ -125,6 +128,21 @@
   </data>
   <data name="PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions" xml:space="preserve">
     <value>Anzeigeoptionen für Ordner</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
+    <value>Legt optional eine Hintergrundfarbe fest</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" xml:space="preserve">
+    <value>Legt den Namen des Ordners fest</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions" xml:space="preserve">
+    <value>Angabe einer Liste von regulären Ausdrücken, welche genutzt werden, um Datenbanken dem Ordner zuzuordnen (bspw. "^(AppFabric)" gruppiert alle Datenbanken im benannten Ordner, wenn der Datenbankname mit dieser Zeichenfolge beginnt).</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurations" xml:space="preserve">
+    <value>Legt eine Liste von Konfiguration für benutzerdefinierte Ordner fest</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside" xml:space="preserve">
+    <value>Legt fest, ob die Datenbank innerhalb des benutzerdefinierten Ordners weiter gruppiert werden sollen</value>
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsEnabled" xml:space="preserve">
     <value>Aktiviert das Gruppieren von Datenbanken in Ordner</value>
@@ -140,6 +158,21 @@
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Aktiviert das Erzeugen von separaten Ordner für schreibgeschützte Datenbanken</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" xml:space="preserve">
+    <value>Name des Ordners</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions" xml:space="preserve">
+    <value>Zuordnung durch reguläre Ausdrücke ermitteln</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurations" xml:space="preserve">
+    <value>Benutzerdefinierte Ordner</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside" xml:space="preserve">
+    <value>Benutze die weiteren Gruppierungsmethoden innerhalb des Ordners</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsEnabled" xml:space="preserve">
     <value>Aktiviert</value>

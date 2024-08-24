@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultCustomFolderName" xml:space="preserve">
+    <value>&lt;choose a folder name&gt;</value>
+  </data>
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Readonly</value>
   </data>
@@ -125,6 +128,21 @@
   </data>
   <data name="PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions" xml:space="preserve">
     <value>Database Folder Display Options</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
+    <value>sets the background color</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" xml:space="preserve">
+    <value>sets the name of the custom folder</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions" xml:space="preserve">
+    <value>Use a list of regular expressions to group databases within the custom folder (f.e. "^(AppFabric)" groups all databases within the custom folder if they start with the same string)</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurations" xml:space="preserve">
+    <value>sets a list of configurations for custom folders</value>
+  </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside" xml:space="preserve">
+    <value>if set to true the databases inside the custom folder will be grouped by the other mechanism, too</value>
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsEnabled" xml:space="preserve">
     <value>Group databases within the Object Explorer into folders.</value>
@@ -140,6 +158,21 @@
   </data>
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Use a separate folder for readonly databases</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
+    <value>Backcolor</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" xml:space="preserve">
+    <value>Custom folder name</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions" xml:space="preserve">
+    <value>Sort databases in folder by regular expressions</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurations" xml:space="preserve">
+    <value>Custom folder configurations</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside" xml:space="preserve">
+    <value>Use other grouping mechanisms inside the custom folder</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsEnabled" xml:space="preserve">
     <value>Enabled</value>

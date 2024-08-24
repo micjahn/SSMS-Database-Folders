@@ -61,6 +61,15 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;choose a folder name&gt; ähnelt.
+        /// </summary>
+        internal static string DefaultCustomFolderName {
+            get {
+                return ResourceManager.GetString("DefaultCustomFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Readonly ähnelt.
         /// </summary>
         internal static string FolderNameReadonly {
@@ -84,6 +93,54 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions {
             get {
                 return ResourceManager.GetString("PropertyCategoryDatabaseFolderOptionsDatabaseFolderDisplayOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die sets the background color ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationBackColor {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die sets the name of the custom folder ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" +
+                        "", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use a list of regular expressions to group databases within the custom folder (f.e. &quot;^(AppFabric)&quot; groups all databases within the custom folder if they start with the same string) ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationRegularExpressio" +
+                        "ns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die sets a list of configurations for custom folders ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurations {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die if set to true the databases inside the custom folder will be grouped by the other mechanism, too ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsCustomFolderConfigurationUseOtherGrouping" +
+                        "MethodsInside", resourceCulture);
             }
         }
         
@@ -129,6 +186,54 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases {
             get {
                 return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Backcolor ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Custom folder name ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationCustomFolderName" +
+                        "", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sort databases in folder by regular expressions ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressio" +
+                        "ns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Custom folder configurations ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurations {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use other grouping mechanisms inside the custom folder ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationUseOtherGroupingMethodsInside {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationUseOtherGrouping" +
+                        "MethodsInside", resourceCulture);
             }
         }
         

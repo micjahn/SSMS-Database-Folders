@@ -174,6 +174,7 @@
             var ni = nodeInformation ?? GetNodeInformation(node);
             if (ni != null)
             {
+                var regularExpressionsFound = false;
                 if (Options.RegularExpressions.Count > 0)
                 {
                     foreach (var pattern in Options.RegularExpressions)
@@ -181,6 +182,7 @@
                         if (String.IsNullOrEmpty(pattern))
                             continue;
 
+                        regularExpressionsFound = true;
                         var match = Regex.Match(ni.InvariantName, pattern, RegexOptions.IgnoreCase);
                         if (match.Groups.Count > 1)
                         {
@@ -194,7 +196,7 @@
                         }
                     }
                 }
-                else
+                if (!regularExpressionsFound)
                 {
                     var indexOfUnderscore = ni.InvariantName.IndexOf('_');
                     if (indexOfUnderscore > 0)
@@ -203,9 +205,72 @@
             }
         }
 
+        private ICustomFolderConfiguration GetDatabaseFolderNameForCustomFolder(TreeNode node, INodeInformation nodeInformation)
+        {
+            var ni = nodeInformation ?? GetNodeInformation(node);
+            if (ni != null)
+            {
+                foreach (var customFolderConfiguration in Options.CustomFolderConfigurations)
+                {
+                    if (string.IsNullOrEmpty(customFolderConfiguration.CustomFolderName))
+                        continue;
+                    if (customFolderConfiguration.RegularExpressions.Count < 1)
+                        continue;
+
+                    foreach (var pattern in customFolderConfiguration.RegularExpressions)
+                    {
+                        if (String.IsNullOrEmpty(pattern))
+                            continue;
+
+                        var match = Regex.Match(ni.InvariantName, pattern, RegexOptions.IgnoreCase);
+                        if (match.Success)
+                        {
+                            return customFolderConfiguration;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         private TreeNode GetOrCreateFolderNode(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder)
         {
             TreeNode databaseFolderNode = null;
+
+            if (Options.CustomFolderConfigurations.Count > 0)
+            {
+                var customFolderConfiguration = GetDatabaseFolderNameForCustomFolder(childNode, childNodeInformation);
+                if (customFolderConfiguration != null)
+                {
+                    if (rootNode.Nodes.ContainsKey(customFolderConfiguration.CustomFolderName))
+                        databaseFolderNode = rootNode.Nodes[customFolderConfiguration.CustomFolderName];
+                    else
+                    {
+                        var newIndex = indexForInsertGlobalReadonlyDatabaseFolder;
+                        for (; newIndex < rootNode.Nodes.Count; newIndex++)
+                        {
+                            var nodeAtIndex = rootNode.Nodes[newIndex];
+                            if ((nodeAtIndex.Name != LocalizedReadonly &&
+                                String.CompareOrdinal(nodeAtIndex.Name, customFolderConfiguration.CustomFolderName) > 0) ||
+                                !NodeIsADatabaseFolder(nodeAtIndex))
+                                break;
+                        }
+                        databaseFolderNode = new DatabaseFolderTreeNode(rootNode)
+                        {
+                            Name = customFolderConfiguration.CustomFolderName,
+                            Text = customFolderConfiguration.CustomFolderName,
+                            Tag = DatabaseFolderNodeTag,
+                            ImageIndex = rootNode.ImageIndex,
+                            SelectedImageIndex = rootNode.ImageIndex
+                        };
+                        rootNode.Nodes.Insert(newIndex, databaseFolderNode);
+                    }
+                    if (!customFolderConfiguration.UseOtherGroupingMethodsInside)
+                        return databaseFolderNode;
+
+                    rootNode = databaseFolderNode;
+                }
+            }
 
             if (Options.GroupDatabasesByName)
             {
