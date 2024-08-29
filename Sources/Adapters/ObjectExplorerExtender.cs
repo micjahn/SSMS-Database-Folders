@@ -143,7 +143,8 @@
                     indexForInsertGlobalReadonlyDatabaseFolder = nodeIndex;
 
                 var databaseFolderNode = GetOrCreateFolderNode(node, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder);
-                if (databaseFolderNode == null)
+                if (databaseFolderNode == null ||
+                    databaseFolderNode == node)
                     continue;
 
                 node.Nodes.Remove(childNode);
@@ -237,104 +238,116 @@
         {
             TreeNode databaseFolderNode = null;
 
-            if (Options.CustomFolderConfigurations.Count > 0)
+            if (Options.GroupDatabasesByCustomFolder())
             {
-                var customFolderConfiguration = GetDatabaseFolderNameForCustomFolder(childNode, childNodeInformation);
-                if (customFolderConfiguration != null)
-                {
-                    if (rootNode.Nodes.ContainsKey(customFolderConfiguration.CustomFolderName))
-                        databaseFolderNode = rootNode.Nodes[customFolderConfiguration.CustomFolderName];
-                    else
-                    {
-                        var newIndex = indexForInsertGlobalReadonlyDatabaseFolder;
-                        for (; newIndex < rootNode.Nodes.Count; newIndex++)
-                        {
-                            var nodeAtIndex = rootNode.Nodes[newIndex];
-                            if ((nodeAtIndex.Name != LocalizedReadonly &&
-                                String.CompareOrdinal(nodeAtIndex.Name, customFolderConfiguration.CustomFolderName) > 0) ||
-                                !NodeIsADatabaseFolder(nodeAtIndex))
-                                break;
-                        }
-                        databaseFolderNode = new DatabaseFolderTreeNode(rootNode)
-                        {
-                            Name = customFolderConfiguration.CustomFolderName,
-                            Text = customFolderConfiguration.CustomFolderName,
-                            Tag = DatabaseFolderNodeTag,
-                            ImageIndex = rootNode.ImageIndex,
-                            SelectedImageIndex = rootNode.ImageIndex
-                        };
-                        rootNode.Nodes.Insert(newIndex, databaseFolderNode);
-                    }
-                    if (!customFolderConfiguration.UseOtherGroupingMethodsInside)
-                        return databaseFolderNode;
-
-                    rootNode = databaseFolderNode;
-                }
+                bool useOtherGroupingsToo = true;
+                databaseFolderNode = GetOrCreateFolderNodeCustomFolder(rootNode, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder, ref useOtherGroupingsToo);
+                if (!useOtherGroupingsToo)
+                    return databaseFolderNode;
             }
 
             if (Options.GroupDatabasesByName)
             {
-                var currentNode = rootNode;
-                foreach (var databaseFolder in GetDatabaseFolderNameFromNode(childNode, childNodeInformation))
-                {
-                    var newIndex = currentNode == rootNode ? indexForInsertGlobalReadonlyDatabaseFolder : 0;
-                    if (currentNode.Nodes.ContainsKey(databaseFolder))
-                        databaseFolderNode = currentNode.Nodes[databaseFolder];
-                    else
-                    {
-                        for (; newIndex < currentNode.Nodes.Count; newIndex++)
-                        {
-                            var nodeAtIndex = currentNode.Nodes[newIndex];
-                            if ((nodeAtIndex.Name != LocalizedReadonly &&
-                                String.CompareOrdinal(nodeAtIndex.Name, databaseFolder) > 0) ||
-                                !NodeIsADatabaseFolder(nodeAtIndex))
-                                break;
-                        }
-                        databaseFolderNode = new DatabaseFolderTreeNode(currentNode)
-                        {
-                            Name = databaseFolder,
-                            Text = databaseFolder,
-                            Tag = DatabaseFolderNodeTag,
-                            ImageIndex = currentNode.ImageIndex,
-                            SelectedImageIndex = currentNode.ImageIndex
-                        };
-                        currentNode.Nodes.Insert(newIndex, databaseFolderNode);
-                    }
-                    currentNode = databaseFolderNode;
-                }
+                databaseFolderNode = GetOrCreateFolderNodeByName(databaseFolderNode ?? rootNode, childNode, childNodeInformation, indexForInsertGlobalReadonlyDatabaseFolder);
             }
 
             if (Options.SeparateReadonlyDatabases)
             {
-                var readonlyValue = childNodeInformation["ReadOnly"];
-                if (readonlyValue is bool && (bool) readonlyValue)
-                {
-                    if ((databaseFolderNode ?? rootNode).Nodes.ContainsKey(LocalizedReadonly))
-                        databaseFolderNode = (databaseFolderNode ?? rootNode).Nodes[LocalizedReadonly];
-                    else
-                    {
-                        var readonlyFolderNode = new DatabaseFolderTreeNode(rootNode)
-                        {
-                            Name = LocalizedReadonly,
-                            Text = LocalizedReadonly,
-                            Tag = DatabaseFolderNodeTag,
-                            ImageIndex = rootNode.ImageIndex,
-                            SelectedImageIndex = rootNode.ImageIndex
-                        };
-                        if (databaseFolderNode != null)
-                        {
-                            databaseFolderNode.Nodes.Insert(0, readonlyFolderNode);
-                        }
-                        else
-                        {
-                            rootNode.Nodes.Insert(indexForInsertGlobalReadonlyDatabaseFolder, readonlyFolderNode);
-                        }
-                        databaseFolderNode = readonlyFolderNode;
-                    }
-                }
+                databaseFolderNode = GetOrCreateFolderNodeForReadonly(databaseFolderNode ?? rootNode, childNodeInformation, databaseFolderNode != null ? 0 : indexForInsertGlobalReadonlyDatabaseFolder);
             }
+
             return databaseFolderNode;
         }
+
+        private TreeNode GetOrCreateFolderNodeCustomFolder(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder, ref bool useOtherGroupingsToo)
+        {
+            var customFolderConfiguration = GetDatabaseFolderNameForCustomFolder(childNode, childNodeInformation);
+            if (customFolderConfiguration == null)
+                return rootNode;
+
+            useOtherGroupingsToo = customFolderConfiguration.UseOtherGroupingMethodsInside;
+            if (rootNode.Nodes.ContainsKey(customFolderConfiguration.CustomFolderName))
+                return rootNode.Nodes[customFolderConfiguration.CustomFolderName];
+
+            var newIndex = indexForInsertGlobalReadonlyDatabaseFolder;
+            for (; newIndex < rootNode.Nodes.Count; newIndex++)
+            {
+                var nodeAtIndex = rootNode.Nodes[newIndex];
+                if ((nodeAtIndex.Name != LocalizedReadonly &&
+                    String.CompareOrdinal(nodeAtIndex.Name, customFolderConfiguration.CustomFolderName) > 0) ||
+                    !NodeIsADatabaseFolder(nodeAtIndex))
+                    break;
+            }
+            var databaseFolderNode = new DatabaseFolderTreeNode(rootNode)
+            {
+                Name = customFolderConfiguration.CustomFolderName,
+                Text = customFolderConfiguration.CustomFolderName,
+                Tag = DatabaseFolderNodeTag,
+                ImageIndex = rootNode.ImageIndex,
+                SelectedImageIndex = rootNode.ImageIndex
+            };
+            rootNode.Nodes.Insert(newIndex, databaseFolderNode);
+
+            return databaseFolderNode;
+        }
+
+        private TreeNode GetOrCreateFolderNodeByName(TreeNode rootNode, TreeNode childNode, INodeInformation childNodeInformation, int indexForInsertGlobalReadonlyDatabaseFolder)
+        {
+            var currentNode = rootNode;
+            TreeNode databaseFolderNode = null;
+            foreach (var databaseFolder in GetDatabaseFolderNameFromNode(childNode, childNodeInformation))
+            {
+                var newIndex = currentNode == rootNode ? indexForInsertGlobalReadonlyDatabaseFolder : 0;
+                if (currentNode.Nodes.ContainsKey(databaseFolder))
+                    databaseFolderNode = currentNode.Nodes[databaseFolder];
+                else
+                {
+                    for (; newIndex < currentNode.Nodes.Count; newIndex++)
+                    {
+                        var nodeAtIndex = currentNode.Nodes[newIndex];
+                        if ((nodeAtIndex.Name != LocalizedReadonly &&
+                            String.CompareOrdinal(nodeAtIndex.Name, databaseFolder) > 0) ||
+                            !NodeIsADatabaseFolder(nodeAtIndex))
+                            break;
+                    }
+                    databaseFolderNode = new DatabaseFolderTreeNode(currentNode)
+                    {
+                        Name = databaseFolder,
+                        Text = databaseFolder,
+                        Tag = DatabaseFolderNodeTag,
+                        ImageIndex = currentNode.ImageIndex,
+                        SelectedImageIndex = currentNode.ImageIndex
+                    };
+                    currentNode.Nodes.Insert(newIndex, databaseFolderNode);
+                }
+                currentNode = databaseFolderNode;
+            }
+
+            return databaseFolderNode;
+        }
+
+        private TreeNode GetOrCreateFolderNodeForReadonly(TreeNode rootNode, INodeInformation childNodeInformation, int indexForInsertReadonlyDatabaseFolder)
+        {
+            var readonlyValue = childNodeInformation["ReadOnly"];
+            if (!(readonlyValue is bool) || !(bool)readonlyValue)
+                return rootNode;
+
+            if (rootNode.Nodes.ContainsKey(LocalizedReadonly))
+                return rootNode.Nodes[LocalizedReadonly];
+
+            var readonlyFolderNode = new DatabaseFolderTreeNode(rootNode)
+            {
+                Name = LocalizedReadonly,
+                Text = LocalizedReadonly,
+                Tag = DatabaseFolderNodeTag,
+                ImageIndex = rootNode.ImageIndex,
+                SelectedImageIndex = rootNode.ImageIndex
+            };
+            rootNode.Nodes.Insert(indexForInsertReadonlyDatabaseFolder, readonlyFolderNode);
+
+            return readonlyFolderNode;
+        }
+
 
         [System.Diagnostics.Conditional("DEBUG")]
         private void debug_message(string message, params object[] args)

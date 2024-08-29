@@ -115,7 +115,7 @@
         {
             get
             {
-                return Enabled && (GroupDatabasesByName || SeparateReadonlyDatabases || CustomFolderConfigurations.Count > 0);
+                return Enabled && (GroupDatabasesByName || SeparateReadonlyDatabases || this.GroupDatabasesByCustomFolder());
             }
         }
 
