@@ -29,6 +29,9 @@ Please report any issues to <https://github.com/micjahn/SSMS-Database-Folders/is
 
 ## Change Log
 
+### v1.0.4 (2024-08-29)
+* added support for custom folders
+
 ### v1.0.3 (2024-08-20)
 * added support for SSMS 20
 
