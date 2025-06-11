@@ -11,12 +11,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E0ACB744-D2A1-42E0-9F17-F09A8658587C}</ProjectGuid>
+    <ProjectGuid>{35053DDC-F8F6-4E22-B7AD-102712C93222}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SsmsDatabaseFolders</RootNamespace>
-    <AssemblyName>SsmsDatabaseFolders.Ssms2016</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <AssemblyName>SsmsDatabaseFolders.Ssms21</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,13 +43,12 @@
     <Compile Include="..\Include\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="DatabaseFolderTreeNode.cs" />
     <Compile Include="ObjectExplorerExtender.cs" />
+    <Compile Include="DatabaseFolderTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SqlWorkbench.Interfaces, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rdParty\Ssms2016\SqlWorkbench.Interfaces.dll</HintPath>
+    <Reference Include="SqlWorkbench.Interfaces">
+      <HintPath>..\..\3rdParty\Ssms21\SqlWorkbench.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Design" />

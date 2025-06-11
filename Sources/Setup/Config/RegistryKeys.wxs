@@ -25,5 +25,13 @@
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
+    <Property Id="SSMS21INSTALLROOT">
+      <RegistrySearch
+        Id="SSMS21INSTALLROOT"
+        Root="HKLM"
+        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\21"
+        Name="SSMSInstallRoot"
+        Type="raw" />
+    </Property>
   </Fragment>
 </Wix>

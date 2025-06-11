@@ -3,10 +3,7 @@
     extern alias Ssms18;
     extern alias Ssms19;
     extern alias Ssms20;
-    extern alias Ssms2012;
-    extern alias Ssms2014;
-    extern alias Ssms2016;
-    extern alias Ssms2017;
+    extern alias Ssms21;
     using Localization;
     using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Shell.Interop;
@@ -141,19 +138,6 @@
             _objectExplorerExtender.RefreshDatabaseNode();
         }
 
-        private void DelayAddSkipLoadingReg()
-        {
-            var delay = new Timer();
-            delay.Tick += delegate (object o, EventArgs e)
-            {
-                delay.Stop();
-                var myPackage = this.UserRegistryRoot.CreateSubKey(@"Packages\{" + PackageGuidString + "}");
-                myPackage.SetValue("SkipLoading", 1);
-            };
-            delay.Interval = 1000;
-            delay.Start();
-        }
-
         private IObjectExplorerExtender GetObjectExplorerExtender()
         {
             try
@@ -166,6 +150,10 @@
 
                     switch (ssmsInterfacesVersion.FileMajorPart)
                     {
+                        case 21:
+                            debug_message("SsmsVersion:21");
+                            return new Ssms21::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+
                         case 20:
                             debug_message("SsmsVersion:20");
                             return new Ssms20::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
@@ -179,26 +167,6 @@
                         case 15:
                             debug_message("SsmsVersion:18");
                             return new Ssms18::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
-
-                        case 14:
-                            debug_message("SsmsVersion:2017");
-                            DelayAddSkipLoadingReg();
-                            return new Ssms2017::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
-
-                        case 13:
-                            debug_message("SsmsVersion:2016");
-                            DelayAddSkipLoadingReg();
-                            return new Ssms2016::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
-
-                        case 12:
-                            debug_message("SsmsVersion:2014");
-                            DelayAddSkipLoadingReg();
-                            return new Ssms2014::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
-
-                        case 11:
-                            debug_message("SsmsVersion:2012");
-                            DelayAddSkipLoadingReg();
-                            return new Ssms2012::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
 
                         default:
                             ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_INFORMATION, String.Format("SqlWorkbench.Interfaces.dll v{0}:{1}", ssmsInterfacesVersion.FileMajorPart, ssmsInterfacesVersion.FileMinorPart));
@@ -354,7 +322,7 @@
         {
             debug_message(message);
 
-            // Logs to %AppData%\Microsoft\VisualStudio\14.0\ActivityLog.XML.
+            // Logs to %AppData%\Microsoft\VisualStudio\15.0\ActivityLog.XML.
             // Recommended to obtain the activity log just before writing to it. Do not cache or save the activity log for future use.
             var log = GetService(typeof(SVsActivityLog)) as IVsActivityLog;
             if (log == null) return;

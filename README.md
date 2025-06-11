@@ -1,7 +1,7 @@
 
 # [SSMS Database Folders](https://github.com/micjahn/SSMS-Database-Folders)
 
-This an extension for SQL Server Management Studio 2012 and above.
+This an extension for SQL Server Management Studio 18 and above.
 It groups databases in the Object Explorer tree into folders.
 
 Source code, documentation and issues can be found at <https://github.com/micjahn/SSMS-Database-Folders>
@@ -27,7 +27,13 @@ This extension moves nodes in the Object Explorer tree view. This could cause pr
 
 Please report any issues to <https://github.com/micjahn/SSMS-Database-Folders/issues>.
 
+## SSMS 17 and below
+The last version of this extension which works with SSMS 17 and lower is version 1.0.4.
+
 ## Change Log
+
+### v1.0.x (2025-xx-xx)
+* removed support for SSMS 17 and older
 
 ### v1.0.4 (2024-08-29)
 * added support for custom folders

@@ -122,33 +122,9 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\Adapters\Ssms2012.csproj">
-      <Name>Ssms2012</Name>
-      <Project>{35aa603a-43f7-4473-bb50-083b46ea19d2}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\Adapters\Ssms2014.csproj">
-      <Name>Ssms2014</Name>
-      <Project>{b4ccf6f0-6279-4aef-864f-4fbe1c83747d}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\Adapters\Ssms2016.csproj">
-      <Name>Ssms2016</Name>
-      <Project>{e0acb744-d2a1-42e0-9f17-f09a8658587c}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\Adapters\Ssms2017.csproj">
-      <Name>Ssms2017</Name>
-      <Project>{e4ae0681-7846-403c-bdbd-bf7238bdc0d4}</Project>
+    <ProjectReference Include="..\Adapters\Ssms21.csproj">
+      <Name>Ssms21</Name>
+      <Project>{35053ddc-f8f6-4e22-b7ad-102712c93222}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
