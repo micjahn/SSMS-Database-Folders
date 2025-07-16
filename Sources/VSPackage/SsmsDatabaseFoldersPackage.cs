@@ -31,14 +31,14 @@
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
-    [ProvideAutoLoad("d114938f-591c-46cf-a785-500a82d97410")] //CommandGuids.ObjectExplorerToolWindowIDString
+    [ProvideAutoLoad("d114938f-591c-46cf-a785-500a82d97410", PackageAutoLoadFlags.BackgroundLoad)] //CommandGuids.ObjectExplorerToolWindowIDString
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(DatabaseFolderOptions), "SQL Server Object Explorer", "Database Folders", 114, 116, true)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class SsmsDatabaseFoldersPackage : Package, IDebugOutput
+    public sealed class SsmsDatabaseFoldersPackage : AsyncPackage, IDebugOutput
     {
         /// <summary>
         /// SsmsDatabaseFoldersPackage GUID string.
@@ -74,14 +74,9 @@
             // initialization is the Initialize method.
         }
 
-        /// <summary>
-        /// Initialization of the package; this method is called right after the package is sited, so this is the place
-        /// where you can put all the initialization code that rely on services provided by VisualStudio.
-        /// </summary>
-        protected override void Initialize()
+        protected override async System.Threading.Tasks.Task InitializeAsync(System.Threading.CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            base.Initialize();
-
+            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             // Link with VS options.
             object obj;
             (this as IVsPackage).GetAutomationObject("SQL Server Object Explorer.Database Folders", out obj);
@@ -111,9 +106,12 @@
                 {
                     // OutputWindowPane for debug messages
                     var outputWindow = (IVsOutputWindow)GetService(typeof(SVsOutputWindow));
-                    var guidPackage = PackageGuid;
-                    outputWindow.CreatePane(PackageGuid, "Database Folders debug output", 1, 0);
-                    outputWindow.GetPane(ref guidPackage, out _outputWindowPane);
+                    if (outputWindow != null)
+                    {
+                        var guidPackage = PackageGuid;
+                        outputWindow.CreatePane(PackageGuid, "Database Folders debug output", 1, 0);
+                        outputWindow.GetPane(ref guidPackage, out _outputWindowPane);
+                    }
                 }
             }
             else
@@ -121,9 +119,12 @@
                 if (_outputWindowPane != null)
                 {
                     var outputWindow = (IVsOutputWindow)GetService(typeof(SVsOutputWindow));
-                    var guidPackage = PackageGuid;
-                    outputWindow.DeletePane(ref guidPackage);
-                    _outputWindowPane = null;
+                    if (outputWindow != null)
+                    {
+                        var guidPackage = PackageGuid;
+                        outputWindow.DeletePane(ref guidPackage);
+                        _outputWindowPane = null;
+                    }
                 }
             }
         }
