@@ -36,6 +36,10 @@
 
     <Property Id="INSTALLLEVEL" Value="3" />
 
+    <InstallUISequence>
+      <Custom Action="Runvswhere_ssms21_vbs" After="AppSearch">NOT Installed OR REINSTALL</Custom>
+    </InstallUISequence>
+    
     <!-- directories -->
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.PlatformProgramFilesFolder)">
@@ -77,7 +81,7 @@
         <Directory Id="SSMS21.Common7" Name="Common7">
           <Directory Id="SSMS21.IDE" Name="IDE">
             <Directory Id="SSMS21.Extensions" Name="Extensions">
-              <Directory Id="SSMS21.Extensions.DF" Name="SsmsDatabaseFolders">
+              <Directory Id="SSMS21.Extensions.DF" Name="Community">
               </Directory>
             </Directory>
           </Directory>
@@ -158,12 +162,11 @@
     </DirectoryRef>
 
     <DirectoryRef Id="SSMS21.Extensions.DF">
-      <Component Id="Files.Ssms21.Package" Guid="{66F21849-4BA2-4420-AC11-BB0E5BB4BF5E}">
+      <Component Id="Files.Ssms21.Package" Guid="{66F21849-4BA2-4420-AC11-BB0E5BB4BF5E}" Win64="yes">
         <File Id="File.Ssms21.pkgdef" Source="$(var.VSPackage.TargetDir)SsmsDatabaseFolders.VSPackage.pkgdef" />
-        <File Id="File.Ssms21.vsixmanifest" Source="$(var.VSPackage.TargetDir)extension.vsixmanifest" />
         <IniFile Id="Ini21"
                  Action="addLine"
-                 Directory="SSMS20.Extensions.DF"
+                 Directory="SSMS21.Extensions.DF"
                  Section="$RootKey$\Packages\{2d162307-505c-4f59-9e87-e7e579c4bf9d}"
                  Name="SsmsDatabaseFolders.VSPackage.pkgdef"
                  Key="&quot;CodeBase&quot;"
@@ -186,9 +189,6 @@
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
         <ComponentRef Id="Files.Ssms18.Package" />
-        <ComponentRef Id="Files.Ssms19.Package" />
-        <ComponentRef Id="Files.Ssms20.Package" />
-        <ComponentRef Id="Files.Ssms21.Package" />
       </Feature>
       <Feature Id="Ssms19Features" Title="Microsoft SQL Management Studio 19" Level="1"
                Description="!(loc.DescriptionFeatureSsms19)"
@@ -201,10 +201,7 @@
         <ComponentRef Id="Files.Interfaces" />
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
-        <ComponentRef Id="Files.Ssms18.Package" />
         <ComponentRef Id="Files.Ssms19.Package" />
-        <ComponentRef Id="Files.Ssms20.Package" />
-        <ComponentRef Id="Files.Ssms21.Package" />
       </Feature>
       <Feature Id="Ssms20Features" Title="Microsoft SQL Management Studio 20" Level="1"
                Description="!(loc.DescriptionFeatureSsms20)"
@@ -217,10 +214,7 @@
         <ComponentRef Id="Files.Interfaces" />
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
-        <ComponentRef Id="Files.Ssms18.Package" />
-        <ComponentRef Id="Files.Ssms19.Package" />
         <ComponentRef Id="Files.Ssms20.Package" />
-        <ComponentRef Id="Files.Ssms21.Package" />
       </Feature>
       <Feature Id="Ssms21Features" Title="Microsoft SQL Management Studio 21" Level="1"
                Description="!(loc.DescriptionFeatureSsms21)"
@@ -233,9 +227,6 @@
         <ComponentRef Id="Files.Interfaces" />
         <ComponentRef Id="Files.VSPackage" />
         <ComponentRef Id="Files.VSPackage.de" />
-        <ComponentRef Id="Files.Ssms18.Package" />
-        <ComponentRef Id="Files.Ssms19.Package" />
-        <ComponentRef Id="Files.Ssms20.Package" />
         <ComponentRef Id="Files.Ssms21.Package" />
       </Feature>
 

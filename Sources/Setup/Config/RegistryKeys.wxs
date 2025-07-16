@@ -5,7 +5,7 @@
       <RegistrySearch
         Id="SSMS18INSTALLROOT"
         Root="HKLM"
-        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\18"
+        Key="SOFTWARE\WOW6432Node\Microsoft\Microsoft SQL Server Management Studio\18"
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
@@ -13,7 +13,7 @@
       <RegistrySearch
         Id="SSMS19INSTALLROOT"
         Root="HKLM"
-        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\19"
+        Key="SOFTWARE\WOW6432Node\Microsoft\Microsoft SQL Server Management Studio\19"
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
@@ -21,7 +21,7 @@
       <RegistrySearch
         Id="SSMS20INSTALLROOT"
         Root="HKLM"
-        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\20"
+        Key="SOFTWARE\WOW6432Node\Microsoft\Microsoft SQL Server Management Studio\20"
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
@@ -33,5 +33,8 @@
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
+    <Binary Id="vswhere_ssms21_vbs" SourceFile="Resources\vswhere_ssms21.vbs" />
+    <CustomAction Id="Runvswhere_ssms21_vbs" BinaryKey="vswhere_ssms21_vbs" VBScriptCall="" Execute="immediate" Return="check" />
+
   </Fragment>
 </Wix>

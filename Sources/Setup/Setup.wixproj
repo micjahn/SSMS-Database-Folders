@@ -42,7 +42,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug;</DefineConstants>
     <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
-    <Cultures>de-DE</Cultures>
+    <Cultures>
+    </Cultures>
     <OutputPath>..\..\Build\Setup\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <WixVariables>
@@ -74,6 +75,7 @@
     <Content Include="Directories.wxi" />
     <Content Include="Resources\setup_banner.bmp" />
     <Content Include="Resources\setup_dialog.bmp" />
+    <Content Include="Resources\vswhere_ssms21.vbs" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixCsFileVersionExtension">
