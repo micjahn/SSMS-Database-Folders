@@ -20,9 +20,9 @@ There are a few user options which change the style and behaviour of the databas
 * Group databases in folders by name - Activates grouping of databases in folders by using that part of the database names before the first underscore
 * Separate folders for readonly databases - Use a separate folder for readonly databases
 * Custom folder configurations - set a list of configurations for custom folders
-** Custom folder name - user defined name of the folder
-** Add databases to folder by regular expressions - a list of regular expression to define which databases should be added to the folder
-** Use other grouping mechanisms inside the custom folder - the main options are used to make sublevels of folders and build a structure
+	* Custom folder name - user defined name of the folder
+	* Add databases to folder by regular expressions - a list of regular expression to define which databases should be added to the folder
+	* Use other grouping mechanisms inside the custom folder - the main options are used to make sublevels of folders and build a structure
 * Build folder name by regular expressions
 * Enabled - enables or disables the extension. can also be toggled by a button in the toolbar
 
