@@ -166,7 +166,7 @@
     <value>Custom folder name</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions" xml:space="preserve">
-    <value>Sort databases in folder by regular expressions</value>
+    <value>Add databases to folder by regular expressions</value>
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurations" xml:space="preserve">
     <value>Custom folder configurations</value>

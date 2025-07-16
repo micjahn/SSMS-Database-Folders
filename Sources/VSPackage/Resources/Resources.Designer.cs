@@ -209,7 +209,7 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sort databases in folder by regular expressions ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add databases to folder by regular expressions ähnelt.
         /// </summary>
         internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationRegularExpressions {
             get {
