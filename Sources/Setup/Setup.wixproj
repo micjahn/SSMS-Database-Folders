@@ -10,12 +10,8 @@
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
-    <Name>Ablesepruefung.Setup_x86</Name>
+    <Name>SSMSDatabaseFolders</Name>
     <EnableProjectHarvesting>True</EnableProjectHarvesting>
-    <SccProjectName>Svn</SccProjectName>
-    <SccProvider>SubversionScc</SccProvider>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccLocalPath>Svn</SccLocalPath>
   </PropertyGroup>
   <PropertyGroup>
     <WixToolPath>$(SolutionDir)\3rdParty\WiX\</WixToolPath>
