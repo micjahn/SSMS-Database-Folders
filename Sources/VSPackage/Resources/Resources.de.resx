@@ -123,6 +123,9 @@
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Schreibgeschützt</value>
   </data>
+  <data name="PropertyCategoryDatabaseFolderOptions" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
   <data name="PropertyCategoryDatabaseFolderOptionsActive" xml:space="preserve">
     <value>Aktivieren</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Aktiviert das Erzeugen von separaten Ordner für schreibgeschützte Datenbanken</value>
   </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsSettings" xml:space="preserve">
+    <value>Einstellungen Export/Import - per Kopieren/Einfügen</value>
+  </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
     <value>Hintergrundfarbe</value>
   </data>
@@ -188,5 +194,8 @@
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Separate Ordner für schreibgeschützte Datenbanken</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsSettings" xml:space="preserve">
+    <value>Export/Import</value>
   </data>
 </root>

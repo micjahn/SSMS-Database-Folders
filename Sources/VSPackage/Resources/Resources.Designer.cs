@@ -79,6 +79,15 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        /// </summary>
+        internal static string PropertyCategoryDatabaseFolderOptions {
+            get {
+                return ResourceManager.GetString("PropertyCategoryDatabaseFolderOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
         /// </summary>
         internal static string PropertyCategoryDatabaseFolderOptionsActive {
@@ -190,6 +199,15 @@ namespace SsmsDatabaseFolders.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings export/import - via copy and paste ähnelt.
+        /// </summary>
+        internal static string PropertyDescriptionDatabaseFolderOptionsSettings {
+            get {
+                return ResourceManager.GetString("PropertyDescriptionDatabaseFolderOptionsSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Backcolor ähnelt.
         /// </summary>
         internal static string PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor {
@@ -279,6 +297,15 @@ namespace SsmsDatabaseFolders.Resources {
         internal static string PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases {
             get {
                 return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Export/Import ähnelt.
+        /// </summary>
+        internal static string PropertyDisplayNameDatabaseFolderOptionsSettings {
+            get {
+                return ResourceManager.GetString("PropertyDisplayNameDatabaseFolderOptionsSettings", resourceCulture);
             }
         }
     }

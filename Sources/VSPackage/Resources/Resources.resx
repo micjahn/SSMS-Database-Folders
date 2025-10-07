@@ -123,6 +123,9 @@
   <data name="FolderNameReadonly" xml:space="preserve">
     <value>Readonly</value>
   </data>
+  <data name="PropertyCategoryDatabaseFolderOptions" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="PropertyCategoryDatabaseFolderOptionsActive" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="PropertyDescriptionDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Use a separate folder for readonly databases</value>
   </data>
+  <data name="PropertyDescriptionDatabaseFolderOptionsSettings" xml:space="preserve">
+    <value>Settings export/import - via copy and paste</value>
+  </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsCustomFolderConfigurationBackColor" xml:space="preserve">
     <value>Backcolor</value>
   </data>
@@ -188,5 +194,8 @@
   </data>
   <data name="PropertyDisplayNameDatabaseFolderOptionsSeparateReadonlyDatabases" xml:space="preserve">
     <value>Separate folders for readonly databases</value>
+  </data>
+  <data name="PropertyDisplayNameDatabaseFolderOptionsSettings" xml:space="preserve">
+    <value>Export/Import</value>
   </data>
 </root>
