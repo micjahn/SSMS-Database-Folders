@@ -35,6 +35,8 @@
     </Property>
     <Binary Id="vswhere_ssms21_vbs" SourceFile="Resources\vswhere_ssms21.vbs" />
     <CustomAction Id="Runvswhere_ssms21_vbs" BinaryKey="vswhere_ssms21_vbs" VBScriptCall="" Execute="immediate" Return="ignore" />
+    <Binary Id="vswhere_ssms22_vbs" SourceFile="Resources\vswhere_ssms22.vbs" />
+    <CustomAction Id="Runvswhere_ssms22_vbs" BinaryKey="vswhere_ssms22_vbs" VBScriptCall="" Execute="immediate" Return="ignore" />
 
   </Fragment>
 </Wix>

@@ -4,6 +4,7 @@
     extern alias Ssms19;
     extern alias Ssms20;
     extern alias Ssms21;
+    extern alias Ssms22;
     using Localization;
     using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Shell.Interop;
@@ -151,6 +152,10 @@
 
                     switch (ssmsInterfacesVersion.FileMajorPart)
                     {
+                        case 22:
+                            debug_message("SsmsVersion:22");
+                            return new Ssms22::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+
                         case 21:
                             debug_message("SsmsVersion:21");
                             return new Ssms21::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
@@ -175,8 +180,8 @@
                     }
                 }
 
-                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 20.x.");
-                return new Ssms20::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
+                ActivityLogEntry(__ACTIVITYLOG_ENTRYTYPE.ALE_WARNING, "Unknown SSMS Version. Defaulting to 22.x.");
+                return new Ssms22::SsmsDatabaseFolders.ObjectExplorerExtender(this, Options, GetLocalizedString);
             }
             catch (Exception ex)
             {

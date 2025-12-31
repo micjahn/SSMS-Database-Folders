@@ -3,6 +3,7 @@ SsmsDatabaseFolders.Ssms18.dll
 SsmsDatabaseFolders.Ssms19.dll
 SsmsDatabaseFolders.Ssms20.dll
 SsmsDatabaseFolders.Ssms21.dll
+SsmsDatabaseFolders.Ssms22.dll
 SsmsDatabaseFolders.VSPackage.dll
 SsmsDatabaseFolders.VSPackage.pkgdef
 extension.vsixmanifest

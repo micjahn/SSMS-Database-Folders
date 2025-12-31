@@ -38,6 +38,10 @@ The last version of this extension which works with SSMS 17 and lower is version
 
 ## Change Log
 
+### v1.0.6 (2025-12-31)
+* added support for SSMS 22
+* added export/import (settings)
+
 ### v1.0.5 (2025-07-16)
 * added support for SSMS 21
 * removed support for SSMS 17 and older

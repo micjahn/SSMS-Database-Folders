@@ -69,6 +69,7 @@
     <Content Include="Config\Common.Config.wxi" />
     <Content Include="Config\Config.wxi" />
     <Content Include="Directories.wxi" />
+    <Content Include="Resources\vswhere_ssms22.vbs" />
     <Content Include="Resources\setup_banner.bmp" />
     <Content Include="Resources\setup_dialog.bmp" />
     <Content Include="Resources\vswhere_ssms21.vbs" />
@@ -123,6 +124,14 @@
     <ProjectReference Include="..\Adapters\Ssms21.csproj">
       <Name>Ssms21</Name>
       <Project>{35053ddc-f8f6-4e22-b7ad-102712c93222}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Adapters\Ssms22.csproj">
+      <Name>Ssms22</Name>
+      <Project>{4c7bcdcd-5614-439f-9605-a406a65cf708}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

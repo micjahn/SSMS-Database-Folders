@@ -6,4 +6,5 @@
   <String Id="DescriptionFeatureSsms19" Overridable="yes">Installs the components for SSMS 19.</String>
   <String Id="DescriptionFeatureSsms20" Overridable="yes">Installs the components for SSMS 20.</String>
   <String Id="DescriptionFeatureSsms21" Overridable="yes">Installs the components for SSMS 21.</String>
+  <String Id="DescriptionFeatureSsms22" Overridable="yes">Installs the components for SSMS 22.</String>
 </WixLocalization>
