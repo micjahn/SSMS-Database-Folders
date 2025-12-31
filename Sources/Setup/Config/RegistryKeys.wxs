@@ -33,6 +33,14 @@
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
+    <Property Id="SSMS22INSTALLROOT">
+      <RegistrySearch
+        Id="SSMS22INSTALLROOT"
+        Root="HKLM"
+        Key="SOFTWARE\Microsoft\Microsoft SQL Server Management Studio\22"
+        Name="SSMSInstallRoot"
+        Type="raw" />
+    </Property>
     <Binary Id="vswhere_ssms21_vbs" SourceFile="Resources\vswhere_ssms21.vbs" />
     <CustomAction Id="Runvswhere_ssms21_vbs" BinaryKey="vswhere_ssms21_vbs" VBScriptCall="" Execute="immediate" Return="ignore" />
     <Binary Id="vswhere_ssms22_vbs" SourceFile="Resources\vswhere_ssms22.vbs" />
