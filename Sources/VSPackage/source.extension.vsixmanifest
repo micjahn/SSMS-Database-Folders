@@ -2,26 +2,25 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="SsmsDatabaseFolders.Michael Jahn.CEB7602F-8130-4A69-BCA3-8DA1C17B4B7D" Version="1.0.6" Language="en-US" Publisher="Michael Jahn" />
-        <DisplayName>SsmsDatabaseFolders</DisplayName>
-        <Description>SSMS Database Group Folders</Description>
+        <DisplayName>SSMS Database Folders</DisplayName>
+        <Description xml:space="preserve">Groups databases in Object Explorer into folders</Description>
+        <MoreInfo>https://github.com/micjahn/SSMS-Database-Folders</MoreInfo>
         <License>LICENSE.rtf</License>
         <Icon>Resources\SsmsDatabaseFoldersPackage.ico</Icon>
     </Metadata>
     <Installation AllUsers="true">
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,22.0]">
+        <InstallationTarget Id="Microsoft.VisualStudio.Ssms" Version="[15.0,21.0)">
             <ProductArchitecture>x86</ProductArchitecture>
         </InstallationTarget>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,22.0]">
+        <InstallationTarget Id="Microsoft.VisualStudio.Ssms" Version="[21.0,23.0)">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6,)" />
     </Dependencies>
-    <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-    </Assets>
+    <Assets />
     <Prerequisites>
-        <Prerequisite Id="Microsoft.Component.NetFX.Native" Version="[16.5.29515.121,17.0)" DisplayName=".NET Native" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
 </PackageManifest>
