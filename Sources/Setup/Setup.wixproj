@@ -69,6 +69,8 @@
     <Content Include="Config\Common.Config.wxi" />
     <Content Include="Config\Config.wxi" />
     <Content Include="Directories.wxi" />
+    <Content Include="Resources\touchfile_ssms21.vbs" />
+    <Content Include="Resources\touchfile_ssms22.vbs" />
     <Content Include="Resources\vswhere_ssms22.vbs" />
     <Content Include="Resources\setup_banner.bmp" />
     <Content Include="Resources\setup_dialog.bmp" />

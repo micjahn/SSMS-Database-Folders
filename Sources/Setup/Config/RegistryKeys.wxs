@@ -41,10 +41,16 @@
         Name="SSMSInstallRoot"
         Type="raw" />
     </Property>
+    
     <Binary Id="vswhere_ssms21_vbs" SourceFile="Resources\vswhere_ssms21.vbs" />
     <CustomAction Id="Runvswhere_ssms21_vbs" BinaryKey="vswhere_ssms21_vbs" VBScriptCall="" Execute="immediate" Return="ignore" />
+    <Binary Id="touchfile_ssms21_vbs" SourceFile="Resources\touchfile_ssms21.vbs" />
+    <CustomAction Id="Runtouchfile_ssms21_vbs" BinaryKey="touchfile_ssms21_vbs" VBScriptCall="" Execute="deferred" Impersonate="no" Return="ignore" />
+
     <Binary Id="vswhere_ssms22_vbs" SourceFile="Resources\vswhere_ssms22.vbs" />
     <CustomAction Id="Runvswhere_ssms22_vbs" BinaryKey="vswhere_ssms22_vbs" VBScriptCall="" Execute="immediate" Return="ignore" />
+    <Binary Id="touchfile_ssms22_vbs" SourceFile="Resources\touchfile_ssms22.vbs" />
+    <CustomAction Id="Runtouchfile_ssms22_vbs" BinaryKey="touchfile_ssms22_vbs" VBScriptCall="" Execute="deferred" Impersonate="no" Return="ignore" />
 
   </Fragment>
 </Wix>

@@ -41,6 +41,10 @@
       <Custom Action="Runvswhere_ssms21_vbs" After="AppSearch">NOT Installed OR REINSTALL</Custom>
       <Custom Action="Runvswhere_ssms22_vbs" After="AppSearch">NOT Installed OR REINSTALL</Custom>
     </InstallUISequence>
+    <InstallExecuteSequence>
+      <Custom Action="Runtouchfile_ssms21_vbs" After="InstallFiles" />
+      <Custom Action="Runtouchfile_ssms22_vbs" After="InstallFiles" />
+    </InstallExecuteSequence>
     
     <!-- directories -->
     <Directory Id="TARGETDIR" Name="SourceDir">
